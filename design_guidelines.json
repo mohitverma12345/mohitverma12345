@@ -1,0 +1,88 @@
+{
+  "project_name": "SunoDistro AI Landing Page",
+  "theme": "dark",
+  "archetype": "5 (Jewel & Luxury) + Sunset Glow",
+  "brand": {
+    "name": "SunoDistro",
+    "tagline": "Create. Sing. Distribute.",
+    "logo_url": "https://customer-assets.emergentagent.com/job_835616fc-14ca-4a2f-8251-540eb5ba159b/artifacts/yraxpcza_1774281721689.png"
+  },
+  "color_palette": {
+    "background_base": "#050505",
+    "surface": "#121212",
+    "surface_glass": "rgba(18, 18, 18, 0.6)",
+    "brand_gradient": "bg-gradient-to-r from-orange-500 via-pink-500 to-amber-500",
+    "text_gradient": "bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-pink-400 to-amber-400",
+    "text_primary": "#FFFFFF",
+    "text_secondary": "#A1A1AA",
+    "border_subtle": "rgba(255, 255, 255, 0.1)",
+    "accent_glow": "rgba(255, 138, 0, 0.15)"
+  },
+  "typography": {
+    "headings": {
+      "font_family": "'Outfit', sans-serif",
+      "import_url": "https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap",
+      "classes": "font-outfit tracking-tight font-bold"
+    },
+    "body": {
+      "font_family": "'Manrope', sans-serif",
+      "import_url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap",
+      "classes": "font-manrope leading-relaxed"
+    }
+  },
+  "layout_and_spacing": {
+    "section_padding": "py-24 md:py-32",
+    "container_max_width": "max-w-7xl mx-auto px-6 lg:px-8",
+    "glass_card": "backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl",
+    "hover_effect": "hover:bg-white/10 hover:border-white/20 transition-all duration-300",
+    "bento_grid": "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"
+  },
+  "media_urls": {
+    "logo": "https://customer-assets.emergentagent.com/job_835616fc-14ca-4a2f-8251-540eb5ba159b/artifacts/yraxpcza_1774281721689.png",
+    "hero_texture": "https://static.prod-images.emergentagent.com/jobs/835616fc-14ca-4a2f-8251-540eb5ba159b/images/b136a30ec069479bc5a5355556246d135e8a6b402ab656efced99b29464d242c.png",
+    "ai_studio_visual": "https://static.prod-images.emergentagent.com/jobs/835616fc-14ca-4a2f-8251-540eb5ba159b/images/54178b36aa7daf0ebe1d113670ffb7793435f8bd07faf1f760fc9f78f8ea67e4.png",
+    "dashboard_mockup": "https://static.prod-images.emergentagent.com/jobs/835616fc-14ca-4a2f-8251-540eb5ba159b/images/69bcf73fce1b9d89bfa830bcbce6b3a5561c9bd960236ab72b1d1b037dbdf0ca.png",
+    "genre_covers": {
+      "Pop": "https://static.prod-images.emergentagent.com/jobs/835616fc-14ca-4a2f-8251-540eb5ba159b/images/4057158b6eef32a395e154e62a12297b0d207e772c18bb9bef7c38b571010818.png",
+      "Rap": "https://static.prod-images.emergentagent.com/jobs/835616fc-14ca-4a2f-8251-540eb5ba159b/images/270096191a4a99d89f75245dc816134b84e9a9c1dd912fa5186468b9356e9049.png",
+      "Bollywood": "https://static.prod-images.emergentagent.com/jobs/835616fc-14ca-4a2f-8251-540eb5ba159b/images/22ff2fcdc84edaeb1612452774f9ce9b60537ca4a9bb2f398c81846b91424a6e.png",
+      "Punjabi": "https://static.prod-images.emergentagent.com/jobs/835616fc-14ca-4a2f-8251-540eb5ba159b/images/7483c3210be952d9f619c8f9a9f5c6bf9d0a777f2f3c0630acd3a4cd894a670d.png",
+      "EDM": "https://static.prod-images.emergentagent.com/jobs/835616fc-14ca-4a2f-8251-540eb5ba159b/images/9fd7036cc65855f9a789b2c2d83a1f999ae0107110d3cfc5279f99980bd72722.png",
+      "Lo-fi": "https://static.prod-images.emergentagent.com/jobs/835616fc-14ca-4a2f-8251-540eb5ba159b/images/13e915030986f64dafb0d81cdf8e981eb12f227137bc02abffe69b3369b200f0.png",
+      "Rock": "https://static.prod-images.emergentagent.com/jobs/835616fc-14ca-4a2f-8251-540eb5ba159b/images/b719da95fd20d260e90e595648175aee1c156deaff803e851fd2dfbc0239d34f.png"
+    },
+    "testimonials": [
+      "https://images.unsplash.com/photo-1760004941335-6feccb7f800a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzV8MHwxfHNlYXJjaHwyfHxwb3J0cmFpdCUyMHByb2Zlc3Npb25hbCUyMG11c2ljJTIwcHJvZHVjZXIlMjBkYXJrJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3Nzg5MzQ5NjJ8MA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1762290965691-e74072600c03?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzV8MHwxfHNlYXJjaHwxfHxwb3J0cmFpdCUyMHByb2Zlc3Npb25hbCUyMG11c2ljJTIwcHJvZHVjZXIlMjBkYXJrJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3Nzg5MzQ5NjJ8MA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1638983752157-052aa1f15bf1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzV8MHwxfHNlYXJjaHwzfHxwb3J0cmFpdCUyMHByb2Zlc3Npb25hbCUyMG11c2ljJTIwcHJvZHVjZXIlMjBkYXJrJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3Nzg5MzQ5NjJ8MA&ixlib=rb-4.1.0&q=85"
+    ]
+  },
+  "external_links": {
+    "login": "https://release.sunodistro.com/auth/login",
+    "register": "https://release.sunodistro.com/auth/register",
+    "ai_studio": "https://ai.sunodistro.com/login.php"
+  },
+  "instructions_to_main_agent": {
+    "global_rules": [
+      "Use React, Tailwind CSS, and Framer Motion for all animations.",
+      "Import the requested fonts (Outfit and Manrope) in the CSS or HTML.",
+      "Add `data-testid` attributes to all interactive elements for robust testing.",
+      "For distribution platforms (Spotify, Apple Music, YouTube, TikTok, Instagram, Amazon), use `react-icons/si` (SiSpotify, SiApplemusic, SiYoutube, SiTiktok, SiInstagram, SiAmazon).",
+      "For general UI icons, use `lucide-react`."
+    ],
+    "sections": {
+      "navbar": "Glassmorphism header (backdrop-blur-xl bg-black/60 border-b border-white/10). Include SunoDistro logo, links, and Login/Register CTA buttons pointing to provided URLs.",
+      "hero": "Include a React Three Fiber canvas for 3D elements (music particles, floating waveforms) behind the main text. Use `media_urls.hero_texture` as a fallback or ambient background. Cinematic typography for headline (use text_gradient). Buttons should point to registration and AI studio.",
+      "ai_music_generator": "Showcase 7 genre cards (Pop, Rap, Bollywood, Punjabi, EDM, Lo-fi, Rock) using the provided `media_urls.genre_covers`. Include a mockup of a 'prompt-to-song' input field.",
+      "ai_lyrics_generator": "Split layout. Left side: Marketing copy. Right side: A code/text editor UI displaying live-typing lyrics animation using Framer Motion.",
+      "ai_studio": "Use `media_urls.ai_studio_visual`. Overlay UI elements indicating vocal isolation, mastering, and stem extraction. Glowing aesthetic.",
+      "global_distribution": "Display an animated world map (SVG points/dots or lines). Surround it with logos of major platforms from `react-icons/si`.",
+      "features_grid": "12-card bento grid. Each card should have `layout_and_spacing.glass_card` classes, a Lucide icon, title, and description. Implement holographic hover effect using Framer Motion or Tailwind gradients.",
+      "creator_dashboard": "Center the `media_urls.dashboard_mockup` image. Wrap it in a styled browser/app frame with a soft sunset glow behind it to emphasize 'premium analytics'.",
+      "pricing": "3 cards. Artist ($20/yr), Label ($50/yr), Ultimate ($55/yr). The Ultimate plan must be visually highlighted (scaled up slightly, gradient border, glow effect).",
+      "testimonials": "Use `media_urls.testimonials` portraits. Display in a grid or flex layout with premium typography for quotes.",
+      "final_cta": "Massive typography, gradient background overlay, and bold CTA buttons linking to the provided URLs.",
+      "footer": "Large brand presence, links, social icons, and copyright text."
+    }
+  }
+}
