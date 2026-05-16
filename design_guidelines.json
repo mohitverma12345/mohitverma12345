@@ -1,0 +1,194 @@
+{
+  "theme": "dark",
+  "archetype": "5 (Jewel & Luxury) blended with Tech/Cinematic",
+  "colors": {
+    "background": {
+      "primary": "#050505",
+      "secondary": "#0A0A0A",
+      "tertiary": "#111111"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#A1A1AA",
+      "muted": "#71717A"
+    },
+    "accents": {
+      "purple": "#8B5CF6",
+      "blue": "#3B82F6",
+      "cyan": "#06B6D4",
+      "gradient_primary": "linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%)",
+      "gradient_glow": "linear-gradient(135deg, #06B6D4 0%, #3B82F6 100%)"
+    },
+    "borders": {
+      "subtle": "rgba(255, 255, 255, 0.05)",
+      "medium": "rgba(255, 255, 255, 0.1)",
+      "highlight": "rgba(6, 182, 212, 0.5)"
+    }
+  },
+  "typography": {
+    "fonts": {
+      "heading": "Outfit, sans-serif",
+      "body": "Manrope, sans-serif"
+    },
+    "hierarchy": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tighter",
+      "h2": "text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight",
+      "h3": "text-2xl sm:text-3xl font-medium tracking-tight",
+      "h4": "text-xl font-medium",
+      "body": "text-base sm:text-lg leading-relaxed text-zinc-400",
+      "small": "text-sm uppercase tracking-[0.2em] font-medium text-zinc-500"
+    }
+  },
+  "spacing_and_layout": {
+    "section_padding": "py-24 sm:py-32 lg:py-40",
+    "container_max_width": "max-w-7xl mx-auto px-6 sm:px-8 lg:px-12",
+    "gap": "gap-8 sm:gap-12 lg:gap-16",
+    "border_radius": {
+      "sm": "rounded-md",
+      "md": "rounded-xl",
+      "lg": "rounded-2xl",
+      "full": "rounded-full"
+    }
+  },
+  "components": {
+    "header": {
+      "style": "fixed top-0 w-full z-50 bg-black/60 backdrop-blur-2xl border-b border-white/5",
+      "nav_links": "text-sm font-medium text-zinc-300 hover:text-white transition-colors",
+      "cta": "bg-white text-black px-5 py-2.5 rounded-full text-sm font-bold hover:bg-zinc-200 transition-colors"
+    },
+    "buttons": {
+      "primary": "bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-bold hover:opacity-90 transition-opacity shadow-[0_0_20px_rgba(59,130,246,0.3)]",
+      "secondary": "bg-white/5 border border-white/10 text-white px-8 py-4 rounded-full font-bold hover:bg-white/10 transition-colors backdrop-blur-sm",
+      "outline": "border border-zinc-800 text-zinc-300 px-6 py-3 rounded-full hover:border-zinc-600 hover:text-white transition-colors"
+    },
+    "cards": {
+      "glass": "bg-white/[0.02] border border-white/5 backdrop-blur-xl rounded-2xl p-8 hover:border-white/10 transition-colors shadow-2xl shadow-black/50",
+      "bento_item": "bg-zinc-950 border border-white/5 rounded-2xl p-6 sm:p-8 hover:bg-white/[0.02] transition-colors overflow-hidden relative group",
+      "pricing_highlight": "bg-white/[0.03] border border-cyan-500/30 rounded-2xl p-8 relative shadow-[0_0_30px_rgba(6,182,212,0.1)] hover:shadow-[0_0_40px_rgba(6,182,212,0.2)] transition-shadow"
+    },
+    "badges": {
+      "default": "inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium text-zinc-300 backdrop-blur-sm",
+      "glow": "inline-flex items-center px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-xs font-medium text-cyan-400"
+    }
+  },
+  "sections": [
+    {
+      "name": "Hero",
+      "layout": "Centered text over full-width background, 100vh or min-h-[90vh]",
+      "elements": [
+        "Headline: Create. Sing. Distribute.",
+        "Subheadline: The operating system for modern music creators.",
+        "CTAs: Start Creating (Primary), Distribute Music (Secondary)",
+        "Visuals: Use hero_waveform_bg behind text with an overlay of bg-black/40. Place rotating_music_orb image in a floating container below the text."
+      ]
+    },
+    {
+      "name": "AI Music Generator",
+      "layout": "Grid cols-1 lg:grid-cols-2 gap-16 items-center",
+      "elements": [
+        "Text: Left aligned. Headline about Prompt-to-Song.",
+        "Visual: Mock UI card showing genre selection (Pop, Rap, Bollywood, etc.) and a glowing waveform.",
+        "Image: Use ai_studio_bg as a soft background or within the mock UI."
+      ]
+    },
+    {
+      "name": "AI Lyrics Generator",
+      "layout": "Grid cols-1 lg:grid-cols-2 gap-16 items-center flex-row-reverse",
+      "elements": [
+        "Text: Right aligned.",
+        "Visual: Split-screen mock of a lyric editor. Use a typewriter effect simulation (or just staggered opacity) for verses."
+      ]
+    },
+    {
+      "name": "AI Studio (Vocal & Stem)",
+      "layout": "Stack layout. Large image below text.",
+      "elements": [
+        "Text: Centered, emphasizing ElevenLabs-level sophistication for vocals and stem extraction.",
+        "Visual: Large bento-style container using stem_extraction_art image, with mock mixer sliders floating over it."
+      ]
+    },
+    {
+      "name": "Distribution",
+      "layout": "Centered content with global map",
+      "elements": [
+        "Image: global_distribution_map in background.",
+        "Content: 'Release Everywhere', 100% royalties.",
+        "Logos: Row of streaming platform icons (Spotify, Apple Music, YouTube, TikTok, Instagram, Amazon) rendered using react-icons or similar."
+      ]
+    },
+    {
+      "name": "Features Grid",
+      "layout": "Bento Grid: grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6",
+      "elements": [
+        "12 Cards: AI Music Gen, AI Lyrics, AI Studio, AI Artwork, Stem Extractor, Mastering, Distribution, Artist Channel, Royalty Tracking, Analytics, Free UPC/ISRC, Instagram linking.",
+        "Style: Subtle glowing icons (use @phosphor-icons/react or lucide-react), minimal text, pure black cards with 1px border-white/5."
+      ]
+    },
+    {
+      "name": "Dashboard Preview",
+      "layout": "Full width mock UI container",
+      "elements": [
+        "Visual: Complex UI showing streaming analytics, earnings graphs (use Recharts with cyan/purple lines), royalty tracking."
+      ]
+    },
+    {
+      "name": "Pricing",
+      "layout": "Grid cols-1 md:grid-cols-3 gap-8",
+      "elements": [
+        "3 Cards: Pro, Ultimate (Highlighted), Enterprise.",
+        "Highlight: Center card has cyan glowing border, 'Most Popular' glow badge."
+      ]
+    },
+    {
+      "name": "Testimonials",
+      "layout": "Grid cols-1 md:grid-cols-3 gap-8",
+      "elements": [
+        "Cards with avatar, quote, artist name, and a 'monthly streams' stat.",
+        "Avatars: Use provided Unsplash images."
+      ]
+    },
+    {
+      "name": "Final CTA",
+      "layout": "Centered box, max-w-4xl, heavy padding, gradient background glow",
+      "elements": [
+        "Headline: The Future of Music Starts Here.",
+        "CTAs: Start Free / Explore AI Studio"
+      ]
+    }
+  ],
+  "media": {
+    "images": {
+      "hero_waveform_bg": "https://static.prod-images.emergentagent.com/jobs/9521f1a3-3587-43f2-adea-dfdd4394f3c3/images/a89bd4acff9a93a7051616e9ab361f88059ad970b7c901d9f031536acb9be952.png",
+      "rotating_music_orb": "https://static.prod-images.emergentagent.com/jobs/9521f1a3-3587-43f2-adea-dfdd4394f3c3/images/976401c0c4ef3f6bbdf00ee722ea7ed4d53d61a1c1f6fb9bc4ca7112d17fa51e.png",
+      "ai_studio_bg": "https://static.prod-images.emergentagent.com/jobs/9521f1a3-3587-43f2-adea-dfdd4394f3c3/images/7b157144f4a0ed5c3487c859f0d362aa7e5d6226dde34dc765bbefd2c59301ee.png",
+      "stem_extraction_art": "https://static.prod-images.emergentagent.com/jobs/9521f1a3-3587-43f2-adea-dfdd4394f3c3/images/2de5630043c61577262668adaf000fd5515d98f34af110f9405d5c1294e46af7.png",
+      "global_distribution_map": "https://static.prod-images.emergentagent.com/jobs/9521f1a3-3587-43f2-adea-dfdd4394f3c3/images/7509661c88408b188a3ed7f52e79187bfa9ea5befbc1284c4a305f29e54c55c9.png"
+    },
+    "avatars": [
+      "https://images.unsplash.com/photo-1681404141874-633aa2de7c76?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2ODh8MHwxfHNlYXJjaHwyfHxwb3J0cmFpdCUyMGFydGlzdCUyMG11c2ljaWFuJTIwc3R1ZGlvJTIwbGlnaHRpbmd8ZW58MHx8fHwxNzc4OTE1NDc0fDA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1513517178-1aca306e52a9?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2ODh8MHwxfHNlYXJjaHwxfHxwb3J0cmFpdCUyMGFydGlzdCUyMG11c2ljaWFuJTIwc3R1ZGlvJTIwbGlnaHRpbmd8ZW58MHx8fHwxNzc4OTE1NDc0fDA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1642140841563-e1c986a07d5a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2ODh8MHwxfHNlYXJjaHw0fHxwb3J0cmFpdCUyMGFydGlzdCUyMG11c2ljaWFuJTIwc3R1ZGlvJTIwbGlnaHRpbmd8ZW58MHx8fHwxNzc4OTE1NDc0fDA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1498798821241-1f327af804fe?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2ODh8MHwxfHNlYXJjaHwzfHxwb3J0cmFpdCUyMGFydGlzdCUyMG11c2ljaWFuJTIwc3R1ZGlvJTIwbGlnaHRpbmd8ZW58MHx8fHwxNzc4OTE1NDc0fDA&ixlib=rb-4.1.0&q=85"
+    ]
+  },
+  "interactions": {
+    "hover": "All interactive elements must change state visually. Buttons lift slightly (-translate-y-1) and increase glow. Cards subtle border glow.",
+    "animations": "Use Framer Motion for scroll-triggered staggered entrances (y: 20, opacity: 0 -> y: 0, opacity: 1). Lightweight Canvas/CSS for audio-reactive particles.",
+    "testing": "All interactive elements must include data-testid attribute in kebab-case."
+  },
+  "libraries": {
+    "icons": "lucide-react or @phosphor-icons/react. For distribution logos, use react-icons (yarn add react-icons).",
+    "charts": "recharts (for dashboard mock)",
+    "animations": "framer-motion"
+  },
+  "instructions_to_main_agent": [
+    "Install required dependencies: framer-motion, lucide-react, react-icons, recharts.",
+    "Update tailwind.config.js to include Outfit and Manrope fonts. Include custom colors from the design guidelines.",
+    "All backgrounds must be pure black (#050505) with deep purple/electric blue accents. AVOID generic neon/cyberpunk clutter.",
+    "Follow 'Bento Grid' strict rules: use gap-6 or gap-8, pure black cards with 1px border-white/5.",
+    "Use framer-motion for smooth entrance animations on scroll. Keep motion elegant, not distracting.",
+    "Add 'data-testid' to all buttons, links, and forms.",
+    "Ensure the hero section uses the hero_waveform_bg with proper overlay to maintain text readability.",
+    "The external links for CTAs must be used as requested: https://release.sunodistro.com/ for plans/pricing, /auth/register, /auth/login."
+  ]
+}
