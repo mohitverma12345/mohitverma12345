@@ -1,0 +1,1243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#050505" />
+<title>SunoDistro — Create. Sing. Distribute.</title>
+<meta name="description" content="The operating system for modern music creators. Generate AI music, write lyrics, record vocals, master tracks and release worldwide — all from one cinematic platform." />
+<meta property="og:title" content="SunoDistro — Create. Sing. Distribute." />
+<meta property="og:description" content="Generate AI music, write lyrics, record vocals, master tracks and release worldwide — all from one cinematic platform." />
+<meta property="og:image" content="https://customer-assets.emergentagent.com/job_835616fc-14ca-4a2f-8251-540eb5ba159b/artifacts/yraxpcza_1774281721689.png" />
+<link rel="icon" href="https://customer-assets.emergentagent.com/job_835616fc-14ca-4a2f-8251-540eb5ba159b/artifacts/yraxpcza_1774281721689.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+:root{
+  --bg:#050505;
+  --surface:rgba(15,15,18,0.55);
+  --surface-strong:rgba(20,20,24,0.75);
+  --border:rgba(255,255,255,0.08);
+  --text:#ffffff;
+  --muted:rgba(255,255,255,0.6);
+  --dim:rgba(255,255,255,0.4);
+  --amber:#ffb347;
+  --orange:#ff7a18;
+  --pink:#ff2d8f;
+  --radius:14px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);scroll-behavior:smooth}
+body{
+  font-family:'Manrope',system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+  line-height:1.55;
+}
+.font-display{font-family:'Outfit',sans-serif;letter-spacing:-0.02em}
+.font-mono{font-family:'JetBrains Mono',monospace}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:transparent;color:inherit}
+::selection{background:rgba(255,138,0,0.35);color:#fff}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:#050505}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--orange),var(--pink));border-radius:8px}
+
+/* layout helpers */
+.container{max-width:1240px;margin:0 auto;padding:0 24px}
+.section{position:relative;padding:112px 0}
+@media (max-width:768px){.section{padding:80px 0}}
+.section-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.12),transparent)}
+.grid{display:grid;gap:16px}
+.flex{display:flex}
+.items-center{align-items:center}
+.justify-center{justify-content:center}
+.justify-between{justify-content:space-between}
+.gap-2{gap:8px} .gap-3{gap:12px} .gap-4{gap:16px} .gap-6{gap:24px}
+.text-center{text-align:center}
+.hidden{display:none}
+@media(min-width:768px){.md-flex{display:flex}.md-grid{display:grid}.md-hidden{display:none}.md-block{display:block}}
+@media(min-width:1024px){.lg-grid{display:grid}}
+
+/* glass */
+.glass{background:var(--surface);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--border);border-radius:18px}
+.glass-strong{background:var(--surface-strong);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.1);border-radius:18px}
+
+/* gradient text */
+.gradient-text{
+  background:linear-gradient(120deg,#ffb347 0%,#ff7a18 30%,#ff2d8f 60%,#ffb347 100%);
+  background-size:200% 200%;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:gradient-shift 8s ease-in-out infinite;
+}
+@keyframes gradient-shift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+/* sun glow / border */
+.sun-glow{box-shadow:0 0 40px rgba(255,122,24,0.25),0 0 100px rgba(255,45,143,0.18),0 0 160px rgba(255,179,71,0.12)}
+.sun-border{position:relative;background:linear-gradient(#0a0a0a,#0a0a0a) padding-box,linear-gradient(135deg,#ffb347,#ff7a18,#ff2d8f) border-box;border:1px solid transparent;border-radius:24px}
+
+/* button */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;border-radius:999px;font-weight:600;font-size:14px;transition:transform .25s ease,background .25s ease,opacity .25s ease;white-space:nowrap}
+.btn-primary{background:linear-gradient(90deg,#ffd089,#ff7a18 40%,#ff2d8f);color:#0a0a0a}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-light{background:#fff;color:#0a0a0a}
+.btn-light:hover{background:rgba(255,255,255,0.9);transform:translateY(-2px)}
+.btn-ghost{background:var(--surface);color:#fff;border:1px solid var(--border)}
+.btn-ghost:hover{background:rgba(255,255,255,0.08);transform:translateY(-2px)}
+.shine{position:relative;overflow:hidden}
+.shine::after{content:"";position:absolute;inset:0;left:-100%;width:50%;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,0.18) 50%,transparent 70%);transition:none}
+.shine:hover::after{animation:shine .9s ease forwards}
+@keyframes shine{0%{transform:translateX(-100%)}100%{transform:translateX(500%)}}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:18px 0;transition:padding .35s ease}
+.nav.scrolled{padding:12px 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-radius:999px;transition:background .35s,backdrop-filter .35s,border .35s}
+.nav.scrolled .nav-inner{background:var(--surface-strong);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.1)}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo img{width:36px;height:36px;border-radius:999px;object-fit:cover;outline:1px solid rgba(255,255,255,0.2)}
+.nav-logo-text{font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;letter-spacing:-0.02em}
+.nav-links{display:none;gap:28px;font-size:13px;color:rgba(255,255,255,0.7)}
+.nav-links a{transition:color .25s}.nav-links a:hover{color:#fff}
+@media(min-width:768px){.nav-links{display:flex}}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.nav-actions .login{display:none;font-size:13px;padding:8px 16px;border-radius:999px;color:rgba(255,255,255,0.8);transition:background .25s}
+.nav-actions .login:hover{color:#fff;background:rgba(255,255,255,0.05)}
+@media(min-width:640px){.nav-actions .login{display:inline-flex}}
+
+/* badge */
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--border);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.8);font-weight:500}
+.badge .dot{color:var(--orange)}
+
+/* section heading */
+.eyebrow{display:block;margin-bottom:18px}
+h1.display{font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(48px,9vw,96px);line-height:.95;letter-spacing:-0.03em;margin:0}
+h2.display{font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(36px,5.4vw,64px);line-height:1.04;letter-spacing:-0.02em;margin:20px 0 0}
+.subtitle{color:rgba(255,255,255,0.6);font-size:clamp(15px,1.4vw,18px);max-width:640px;margin-top:20px;line-height:1.65}
+
+/* hero */
+.hero{position:relative;min-height:100vh;padding-top:130px;padding-bottom:80px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg .base{position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(255,122,24,0.18),transparent 55%),radial-gradient(ellipse at 30% 70%,rgba(255,45,143,0.15),transparent 55%),#050505}
+.hero-orb{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.orb-wrap{position:relative;width:min(520px,80vw);height:min(520px,80vw)}
+.orb-glow{position:absolute;inset:0;border-radius:50%;filter:blur(60px);opacity:0.7;background:radial-gradient(circle at 35% 35%,#ffd089,#ff7a18 30%,#ff2d8f 60%,transparent 75%)}
+.orb-core{position:absolute;inset:18%;border-radius:50%;background:radial-gradient(circle at 30% 30%,#ffe7b8,#ff8a3c 35%,#ff2d8f 80%);box-shadow:0 0 80px rgba(255,122,24,0.55),inset 0 0 160px rgba(255,45,143,0.4)}
+.orb-ring{position:absolute;top:50%;left:50%;border-radius:50%;border:1px solid rgba(255,255,255,0.08);animation:spin linear infinite}
+.orb-ring .satellite{position:absolute;top:50%;left:0;width:12px;height:12px;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,#fff,#ff7a18 60%,transparent);box-shadow:0 0 16px #ff7a18}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.pulse-ring{position:absolute;inset:20%;border:1px solid rgba(255,138,0,0.3);border-radius:50%;animation:pulseRing 2.4s cubic-bezier(0.215,0.61,0.355,1) infinite}
+@keyframes pulseRing{0%{transform:scale(0.6);opacity:0.8}100%{transform:scale(2.4);opacity:0}}
+#particles{position:absolute;inset:0;width:100%;height:100%}
+.hero-vignette{position:absolute;inset:0;z-index:10;pointer-events:none;background:radial-gradient(ellipse at 50% 60%,rgba(255,122,24,0.10),transparent 55%),linear-gradient(180deg,rgba(5,5,5,0) 0%,rgba(5,5,5,0.4) 60%,#050505 100%)}
+.hero-content{position:relative;z-index:20}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:48px;align-items:start}
+@media(min-width:1024px){.hero-grid{grid-template-columns:1.4fr 1fr}}
+.hero-cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.hero-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:54px;max-width:640px}
+@media(min-width:640px){.hero-stats{grid-template-columns:repeat(4,1fr)}}
+.stat{padding:14px 16px;border-radius:18px}
+.stat .k{font-family:'Outfit',sans-serif;font-size:24px;font-weight:700}
+.stat .v{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,0.5);margin-top:4px}
+
+/* album previews */
+.albums{position:relative;height:520px;display:none}
+@media(min-width:1024px){.albums{display:block}}
+.album{position:absolute;width:240px;border-radius:24px;padding:12px;animation:floatY 6s ease-in-out infinite}
+.album .cover{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:1/1}
+.album .cover img{width:100%;height:100%;object-fit:cover}
+.album .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent)}
+.album .meta{position:absolute;left:12px;bottom:8px;z-index:2}
+.album .meta .bpm{font-size:11px;color:rgba(255,255,255,0.7);font-family:'JetBrains Mono',monospace}
+.album .meta .name{font-family:'Outfit',sans-serif;font-weight:600}
+.album .play{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.92);display:flex;align-items:center;justify-content:center}
+.album .play svg{width:12px;height:12px;fill:#000}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+/* marquee */
+.marquee{margin-top:60px;position:relative;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee-track{display:inline-flex;gap:48px;white-space:nowrap;animation:scroll 28s linear infinite}
+.marquee-track span{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,0.45);font-size:14px}
+.marquee-track svg{width:22px;height:22px}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* equalizer */
+.eq{display:flex;align-items:flex-end;gap:3px;height:36px}
+.eq span{width:3px;background:linear-gradient(to top,var(--orange),var(--pink));border-radius:99px;transform-origin:bottom;animation:eq 1.1s ease-in-out infinite}
+@keyframes eq{0%,100%{transform:scaleY(0.3)}50%{transform:scaleY(1)}}
+
+/* generator */
+.gen-grid{display:grid;grid-template-columns:1fr;gap:24px;margin-top:56px}
+@media(min-width:1024px){.gen-grid{grid-template-columns:7fr 5fr}}
+.gen-console{padding:28px;position:relative;overflow:hidden}
+.gen-console textarea{margin-top:8px;width:100%;background:rgba(0,0,0,0.4);border:1px solid var(--border);border-radius:16px;padding:16px;color:#fff;font-size:16px;font-family:inherit;resize:none;outline:none;transition:border .25s}
+.gen-console textarea:focus{border-color:rgba(255,122,24,0.6)}
+.gen-row{display:grid;grid-template-columns:1fr;gap:16px;margin-top:20px}
+@media(min-width:640px){.gen-row{grid-template-columns:1fr 1fr}}
+.label-mini{font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:rgba(255,255,255,0.4);margin-bottom:8px}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{padding:6px 12px;border-radius:999px;font-size:12px;border:1px solid var(--border);color:rgba(255,255,255,0.7);transition:.25s}
+.pill.active{background:linear-gradient(90deg,var(--orange),var(--pink));color:#0a0a0a;border-color:transparent}
+.pill:hover{background:rgba(255,255,255,0.05)}
+.slider{width:100%;-webkit-appearance:none;background:transparent;margin-top:6px}
+.slider::-webkit-slider-runnable-track{height:6px;background:linear-gradient(90deg,var(--orange),var(--pink));border-radius:999px}
+.slider::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:#fff;margin-top:-5px;box-shadow:0 0 12px rgba(255,122,24,0.7)}
+.slider::-moz-range-track{height:6px;background:linear-gradient(90deg,var(--orange),var(--pink));border-radius:999px}
+.slider::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#fff;border:0;box-shadow:0 0 12px rgba(255,122,24,0.7)}
+.player{display:flex;align-items:center;gap:12px;padding:16px;margin-top:24px;border-radius:18px;background:var(--surface);border:1px solid var(--border)}
+.player .pbtn{width:44px;height:44px;border-radius:50%;background:linear-gradient(90deg,var(--orange),var(--pink));display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.player .pbtn svg{width:14px;height:14px;fill:#000}
+.player .info{flex:1;min-width:0}
+.player .info .file{font-size:14px;font-weight:500}
+.player .info .meta{font-size:12px;color:rgba(255,255,255,0.4);font-family:'JetBrains Mono',monospace;margin-top:2px}
+.player .wave{flex:1;height:38px;display:none}
+@media(min-width:640px){.player .wave{display:block}}
+.player .gen-btn{padding:8px 16px;border-radius:999px;background:#fff;color:#0a0a0a;font-size:12px;font-weight:600;flex-shrink:0}
+
+.genres{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(min-width:640px){.genres{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:1024px){.genres{grid-template-columns:repeat(3,1fr)}}
+.genre{position:relative;aspect-ratio:3/4;border-radius:18px;overflow:hidden;outline:1px solid var(--border);transition:.3s;text-align:left;padding:0}
+.genre:hover{outline-color:rgba(255,255,255,0.25)}
+.genre img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s}
+.genre:hover img{transform:scale(1.1)}
+.genre::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.85),transparent 60%)}
+.genre .text{position:absolute;left:12px;bottom:12px;z-index:2}
+.genre .text .name{font-family:'Outfit',sans-serif;font-weight:600;font-size:15px}
+.genre .text .bpm{font-size:10px;color:rgba(255,255,255,0.6);font-family:'JetBrains Mono',monospace;margin-top:2px}
+.genre.active{outline:2px solid var(--orange);box-shadow:0 0 40px rgba(255,122,24,0.25),0 0 100px rgba(255,45,143,0.18)}
+.genre .check{position:absolute;top:8px;right:8px;width:20px;height:20px;border-radius:50%;background:#fff;display:none;align-items:center;justify-content:center;z-index:3}
+.genre.active .check{display:flex}
+.genre .check svg{width:12px;height:12px;color:#000}
+
+/* lyrics */
+.lyrics-grid{display:grid;grid-template-columns:1fr;gap:48px;align-items:center}
+@media(min-width:1024px){.lyrics-grid{grid-template-columns:1fr 1fr}}
+.lyrics-features{margin-top:32px;display:flex;flex-direction:column;gap:12px}
+.lyrics-features .item{display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(255,255,255,0.8)}
+.lyrics-features .check-circle{width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--pink));display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.lyrics-features .check-circle svg{width:12px;height:12px;color:#000}
+.editor{background:rgba(0,0,0,0.6);border-radius:18px;overflow:hidden}
+.editor .titlebar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.editor .titlebar .dots{display:flex;gap:6px}
+.editor .titlebar .dots i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.editor .titlebar .filename{font-size:11px;font-family:'JetBrains Mono',monospace;color:rgba(255,255,255,0.4)}
+.editor .status{display:flex;align-items:center;gap:6px;font-size:10px;color:rgba(255,255,255,0.4)}
+.editor .status i{width:6px;height:6px;border-radius:50%;background:var(--orange);animation:pulse 1s ease infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.editor .pad{padding:24px;height:520px;overflow:hidden;position:relative;font-family:'JetBrains Mono',monospace;font-size:14px;line-height:1.8;color:rgba(255,255,255,0.85)}
+.editor .pad::after{content:"";position:absolute;bottom:0;left:0;right:0;height:96px;background:linear-gradient(to top,#000,transparent);pointer-events:none}
+.section-tag{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--orange);margin:14px 0 6px}
+.section-tag:first-child{margin-top:0}
+.cursor{display:inline-block;width:8px;height:18px;background:var(--orange);vertical-align:middle;margin-left:2px;animation:pulse 1s ease infinite}
+
+/* studio */
+.studio-stage{position:relative;margin-top:64px;border-radius:28px;overflow:hidden;padding:8px}
+.studio-stage .canvas{position:relative;aspect-ratio:16/9;border-radius:22px;overflow:hidden}
+.studio-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.studio-stage .canvas::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,0.4),transparent,rgba(0,0,0,0.6))}
+.studio-overlay{position:absolute;padding:14px;border-radius:18px;background:var(--surface-strong);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.1);z-index:3}
+.studio-bar{height:6px;border-radius:999px;background:rgba(255,255,255,0.1);overflow:hidden;margin-top:8px}
+.studio-bar .fill{height:100%;width:82%;background:linear-gradient(90deg,var(--orange),var(--pink))}
+.studio-workflow{margin-top:40px;display:grid;grid-template-columns:repeat(1,1fr);gap:16px}
+@media(min-width:640px){.studio-workflow{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.studio-workflow{grid-template-columns:repeat(4,1fr)}}
+.wf-card{padding:20px;border-radius:18px;transition:.25s}
+.wf-card:hover{background:rgba(255,255,255,0.05)}
+.wf-card .icon-box{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,rgba(255,122,24,0.3),rgba(255,45,143,0.2));display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.wf-card .icon-box svg{width:20px;height:20px;color:#ffb46b}
+.wf-card .t{font-family:'Outfit',sans-serif;font-weight:600}
+.wf-card .d{font-size:14px;color:rgba(255,255,255,0.55);margin-top:4px}
+
+/* distribution */
+.dist-grid{display:grid;grid-template-columns:1fr;gap:24px;align-items:center;margin-top:56px}
+@media(min-width:1024px){.dist-grid{grid-template-columns:7fr 5fr}}
+.world{position:relative;width:100%;aspect-ratio:2/1;border-radius:24px;overflow:hidden}
+.timeline{padding:24px}
+.timeline-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
+.timeline-row:last-child{border:0}
+.timeline-row .marker{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.timeline-row .marker.done{background:linear-gradient(135deg,var(--orange),var(--pink))}
+.timeline-row .marker.active{outline:2px solid rgba(255,122,24,0.6)}
+.timeline-row .marker.active i{width:6px;height:6px;border-radius:50%;background:var(--orange);animation:pulse 1s infinite}
+.timeline-row .marker.todo{background:rgba(255,255,255,0.06)}
+.timeline-row .marker.done svg{width:12px;height:12px;color:#000}
+.timeline-row .label{font-size:14px;color:rgba(255,255,255,0.6)}
+.timeline-row .label.done{color:#fff}
+.timeline-row .time{margin-left:auto;font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--orange)}
+.platforms{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(min-width:640px){.platforms{grid-template-columns:repeat(5,1fr)}}
+@media(min-width:1024px){.platforms{grid-template-columns:repeat(10,1fr)}}
+.platform{aspect-ratio:1/1;border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;transition:.25s}
+.platform:hover{background:rgba(255,255,255,0.05)}
+.platform svg{width:26px;height:26px;transition:transform .25s}
+.platform:hover svg{transform:scale(1.1)}
+.platform .pname{font-size:10px;color:rgba(255,255,255,0.5);text-align:center;padding:0 8px;line-height:1.15}
+
+/* features grid */
+.features{margin-top:56px;display:grid;grid-template-columns:repeat(1,1fr);gap:16px}
+@media(min-width:640px){.features{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.features{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1280px){.features{grid-template-columns:repeat(4,1fr)}}
+.feature{position:relative;padding:22px;border-radius:18px;overflow:hidden;transition:.3s}
+.feature:hover{transform:translateY(-6px)}
+.feature .glow{position:absolute;top:-40px;right:-40px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,#ff7a18,transparent 70%);opacity:0;filter:blur(40px);transition:opacity .5s}
+.feature:hover .glow{opacity:1}
+.feature .icon-box{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:var(--surface);border:1px solid var(--border);margin-bottom:16px}
+.feature .icon-box svg{width:20px;height:20px;color:#ffb46b}
+.feature .t{font-family:'Outfit',sans-serif;font-weight:600}
+.feature .d{font-size:14px;color:rgba(255,255,255,0.55);margin-top:6px;line-height:1.6}
+
+/* dashboard */
+.dash-wrap{position:relative;margin-top:64px}
+.dash-glow{position:absolute;inset:-80px;z-index:-1;opacity:.4;filter:blur(60px);background:radial-gradient(ellipse at center,rgba(255,122,24,0.3),transparent 60%)}
+.dash-frame{padding:12px;border-radius:28px}
+.dash-screen{background:rgba(0,0,0,0.6);border-radius:22px;overflow:hidden}
+.dash-screen .bar{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:1px solid rgba(255,255,255,0.05)}
+.dash-screen .bar .dots{display:flex;gap:6px}
+.dash-screen .bar .dots i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.dash-screen .bar .url{font-size:11px;color:rgba(255,255,255,0.4);font-family:'JetBrains Mono',monospace}
+.dash-tile{position:absolute;padding:16px;border-radius:18px;display:none}
+@media(min-width:768px){.dash-tile{display:block}}
+.dash-tile.left{left:-10px;top:60px}
+.dash-tile.right{right:-10px;bottom:80px}
+.dash-tile .lbl{font-size:10px;text-transform:uppercase;letter-spacing:.18em;color:rgba(255,255,255,0.4)}
+.dash-tile .big{font-family:'Outfit',sans-serif;font-size:28px;font-weight:700;margin-top:4px}
+.dash-tile .delta{font-size:12px;margin-top:4px}
+
+/* pricing */
+.pricing{margin-top:64px;display:grid;grid-template-columns:1fr;gap:24px;align-items:stretch}
+@media(min-width:1024px){.pricing{grid-template-columns:repeat(3,1fr)}}
+.plan{position:relative;padding:30px;display:flex;flex-direction:column;border-radius:24px;transition:.3s}
+.plan:hover{transform:translateY(-8px)}
+.plan .ribbon{position:absolute;top:-12px;left:50%;transform:translateX(-50%);padding:5px 14px;border-radius:999px;background:linear-gradient(90deg,#ffd089,#ff7a18,#ff2d8f);color:#0a0a0a;font-size:10px;text-transform:uppercase;letter-spacing:.2em;font-weight:600;white-space:nowrap}
+.plan .pname{font-family:'Outfit',sans-serif;font-size:22px;font-weight:600;display:flex;align-items:center;gap:8px}
+.plan .pblurb{font-size:14px;color:rgba(255,255,255,0.55);margin-top:8px;min-height:42px}
+.plan .price-row{display:flex;align-items:baseline;gap:6px;margin-top:24px}
+.plan .price{font-family:'Outfit',sans-serif;font-size:48px;font-weight:800}
+.plan .per{font-size:14px;color:rgba(255,255,255,0.4)}
+.plan ul{list-style:none;padding:0;margin:24px 0 0;display:flex;flex-direction:column;gap:12px;font-size:14px;color:rgba(255,255,255,0.78)}
+.plan ul li{display:flex;align-items:flex-start;gap:10px}
+.plan .li-check{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.plan .li-check svg{width:12px;height:12px}
+.plan.featured .li-check{background:linear-gradient(135deg,var(--orange),var(--pink))}
+.plan.featured .li-check svg{color:#000}
+.plan .plan-cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:24px;padding:13px;border-radius:999px;font-weight:600;font-size:14px;background:#fff;color:#0a0a0a;transition:.25s}
+.plan.featured .plan-cta{background:linear-gradient(90deg,#ffd089,#ff7a18,#ff2d8f);color:#0a0a0a}
+.plan .plan-cta:hover{transform:translateY(-2px)}
+
+/* testimonials */
+.tests{margin-top:56px;display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:768px){.tests{grid-template-columns:repeat(3,1fr)}}
+.test-card{padding:24px;border-radius:24px;display:flex;flex-direction:column}
+.test-head{display:flex;align-items:center;gap:12px}
+.test-head img{width:48px;height:48px;border-radius:50%;object-fit:cover;outline:1px solid rgba(255,255,255,0.1)}
+.test-head .nm{font-weight:500}
+.test-head .rl{font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px}
+.test-head .stars{margin-left:auto;display:flex;gap:2px;color:var(--orange)}
+.test-head .stars svg{width:14px;height:14px;fill:currentColor}
+.quote{margin-top:20px;font-size:15px;color:rgba(255,255,255,0.8);line-height:1.65}
+.test-foot{margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;align-items:center}
+.test-foot .l{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,0.4)}
+.test-foot .r{font-family:'Outfit',sans-serif;font-weight:600;font-size:14px}
+
+/* final cta */
+.final{position:relative;padding:160px 0;overflow:hidden;text-align:center}
+.final::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(255,122,24,0.18),transparent 60%),radial-gradient(ellipse at 30% 80%,rgba(255,45,143,0.12),transparent 50%);pointer-events:none}
+.final-particles{position:absolute;inset:0;pointer-events:none}
+.final-particles i{position:absolute;width:3px;height:3px;background:rgba(255,255,255,0.4);border-radius:50%;animation:floatY 6s ease-in-out infinite}
+.final h2{font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(48px,8vw,96px);line-height:.95;letter-spacing:-0.03em;margin:0;position:relative;z-index:1}
+.final p{color:rgba(255,255,255,0.65);font-size:18px;margin-top:24px;max-width:560px;margin-left:auto;margin-right:auto;position:relative;z-index:1}
+.final .row{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:40px;position:relative;z-index:1}
+
+/* footer */
+footer{padding:80px 0 36px;border-top:1px solid rgba(255,255,255,0.05);position:relative}
+.foot-grid{display:grid;grid-template-columns:1fr;gap:40px}
+@media(min-width:1024px){.foot-grid{grid-template-columns:2fr 1fr 1fr 1fr}}
+.foot-brand img{width:40px;height:40px;border-radius:50%;object-fit:cover}
+.foot-brand p{max-width:380px;color:rgba(255,255,255,0.55);font-size:14px;line-height:1.65;margin:16px 0 24px}
+.socials{display:flex;gap:10px}
+.socials a{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--surface);border:1px solid var(--border);transition:.25s}
+.socials a:hover{background:rgba(255,255,255,0.08)}
+.socials svg{width:16px;height:16px}
+.foot-col .ch{font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:rgba(255,255,255,0.4);margin-bottom:16px}
+.foot-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:14px;color:rgba(255,255,255,0.7)}
+.foot-col a{transition:color .25s}.foot-col a:hover{color:#fff}
+.mega{margin:64px 0 24px;position:relative;overflow:hidden}
+.mega-stroke{font-family:'Outfit',sans-serif;font-weight:800;font-size:18vw;line-height:0.95;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,0.07);user-select:none;white-space:nowrap}
+.mega-fill{position:absolute;inset:0;display:flex;align-items:flex-end;pointer-events:none;clip-path:inset(60% 0 0 0);opacity:.35}
+.mega-fill .text{font-family:'Outfit',sans-serif;font-weight:800;font-size:18vw;line-height:0.95;letter-spacing:-.06em;background:linear-gradient(120deg,#ffb347,#ff7a18,#ff2d8f);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;white-space:nowrap}
+.copy{padding-top:24px;border-top:1px solid rgba(255,255,255,0.05);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:12px;color:rgba(255,255,255,0.4)}
+.copy .links{display:flex;gap:16px}
+.copy a:hover{color:rgba(255,255,255,0.7)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* misc */
+.dot-live{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--orange);animation:pulse 1s infinite;vertical-align:middle;margin-right:6px}
+.slow-spin{animation:spinSlow 30s linear infinite}
+@keyframes spinSlow{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#top" class="nav-logo" data-testid="brand-logo">
+        <img src="https://customer-assets.emergentagent.com/job_835616fc-14ca-4a2f-8251-540eb5ba159b/artifacts/yraxpcza_1774281721689.png" alt="SunoDistro" />
+        <span class="nav-logo-text">suno<span class="gradient-text">distro</span></span>
+      </a>
+      <nav class="nav-links">
+        <a href="#generator" data-testid="nav-generator">AI Music</a>
+        <a href="#lyrics" data-testid="nav-lyrics">Lyrics</a>
+        <a href="#studio" data-testid="nav-studio">Studio</a>
+        <a href="#distribution" data-testid="nav-distribution">Distribute</a>
+        <a href="#pricing" data-testid="nav-pricing">Pricing</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="login" href="https://release.sunodistro.com/auth/login" data-testid="nav-login">Log in</a>
+        <a class="btn btn-light shine" href="https://release.sunodistro.com/auth/register" data-testid="nav-register">Get Started
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="top" class="hero">
+  <div class="hero-bg">
+    <div class="base"></div>
+    <div class="hero-orb">
+      <div class="orb-wrap">
+        <div class="orb-glow"></div>
+        <div class="orb-core"></div>
+        <div class="orb-ring" style="width:110%;height:110%;margin-left:-55%;margin-top:-55%;animation-duration:26s"><span class="satellite"></span></div>
+        <div class="orb-ring" style="width:130%;height:130%;margin-left:-65%;margin-top:-65%;animation-duration:38s;animation-direction:reverse;opacity:.7"><span class="satellite"></span></div>
+        <div class="orb-ring" style="width:150%;height:150%;margin-left:-75%;margin-top:-75%;animation-duration:60s;opacity:.5"><span class="satellite"></span></div>
+        <div class="pulse-ring"></div>
+        <div class="pulse-ring" style="animation-delay:.8s"></div>
+        <div class="pulse-ring" style="animation-delay:1.6s"></div>
+      </div>
+    </div>
+    <canvas id="particles"></canvas>
+    <div class="hero-vignette"></div>
+  </div>
+
+  <div class="container hero-content">
+    <div class="hero-grid">
+      <div>
+        <span class="badge eyebrow">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" class="dot"><path d="M12 3l1.9 5.8 6.1.5-4.6 4 1.4 6L12 16l-4.8 3.3 1.4-6L4 9.3l6.1-.5L12 3z"/></svg>
+          The operating system for modern music creators
+        </span>
+        <h1 class="display">Create.<br/>Sing.<br/><span class="gradient-text">Distribute.</span></h1>
+        <p class="subtitle">Generate AI music, write lyrics, record vocals, master tracks and release worldwide — all from one cinematic, creator-first platform.</p>
+        <div class="hero-cta-row">
+          <a class="btn btn-primary shine sun-glow" href="https://ai.sunodistro.com/login.php" data-testid="hero-cta-create">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M8 5v14l11-7L8 5z"/></svg>
+            Start Creating
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="https://release.sunodistro.com/auth/register" data-testid="hero-cta-distribute">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+            Distribute Music
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat glass"><div class="k gradient-text">150+</div><div class="v">Stores worldwide</div></div>
+          <div class="stat glass"><div class="k gradient-text">100%</div><div class="v">Royalties to you</div></div>
+          <div class="stat glass"><div class="k gradient-text">7</div><div class="v">AI music genres</div></div>
+          <div class="stat glass"><div class="k gradient-text">$0</div><div class="v">Setup fee</div></div>
+        </div>
+      </div>
+
+      <div class="albums">
+        <div class="album glass-strong" style="top:0;right:0">
+          <div class="cover">
+            <img src="https://static.prod-images.emergentagent.com/jobs/835616fc-14ca-4a2f-8251-540eb5ba159b/images/4057158b6eef32a395e154e62a12297b0d207e772c18bb9bef7c38b571010818.png" alt="Pop"/>
+            <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5z"/></svg></div>
+            <div class="meta"><div class="bpm">118 BPM</div><div class="name">Pop</div></div>
+          </div>
+        </div>
+        <div class="album glass-strong" style="top:120px;right:40px;animation-delay:.8s">
+          <div class="cover">
+            <img src="https://static.prod-images.emergentagent.com/jobs/835616fc-14ca-4a2f-8251-540eb5ba159b/images/270096191a4a99d89f75245dc816134b84e9a9c1dd912fa5186468b9356e9049.png" alt="Rap"/>
+            <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5z"/></svg></div>
+            <div class="meta"><div class="bpm">92 BPM</div><div class="name">Rap</div></div>
+          </div>
+        </div>
+        <div class="album glass-strong" style="top:240px;right:80px;animation-delay:1.6s">
+          <div class="cover">
+            <img src="https://static.prod-images.emergentagent.com/jobs/835616fc-14ca-4a2f-8251-540eb5ba159b/images/22ff2fcdc84edaeb1612452774f9ce9b60537ca4a9bb2f398c81846b91424a6e.png" alt="Bollywood"/>
+            <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5z"/></svg></div>
+            <div class="meta"><div class="bpm">104 BPM</div><div class="name">Bollywood</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="marquee">
+      <div style="text-align:center;font-size:11px;text-transform:uppercase;letter-spacing:.3em;color:rgba(255,255,255,0.4);margin-bottom:20px">Distributing to</div>
+      <div class="marquee-track" id="marqueeTrack"></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ============ AI MUSIC GENERATOR ============ -->
+<section id="generator" class="section">
+  <div class="container">
+    <span class="badge eyebrow"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" class="dot"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg> 01 · AI Music Generator</span>
+    <h2 class="display">Prompt to <span class="gradient-text">finished song</span>.</h2>
+    <p class="subtitle">Type an idea. Pick a genre, mood and tempo. Our model writes the chords, melody, arrangement and vocal performance — and hands you back a master-ready track.</p>
+
+    <div class="gen-grid">
+      <div class="gen-console glass">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="font-size:12px;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:8px"><span class="dot-live"></span>LIVE GENERATION · v3.2</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.4);font-family:'JetBrains Mono',monospace">SESSION #4821</div>
+        </div>
+
+        <div class="label-mini" style="margin-top:22px">Describe your song</div>
+        <textarea data-testid="generator-prompt" rows="3">A late-night drive through Mumbai, neon reflections on rain, soft female vocals</textarea>
+
+        <div class="gen-row">
+          <div>
+            <div class="label-mini">Mood</div>
+            <div class="pills" id="moodPills">
+              <button class="pill active" data-testid="mood-euphoric">Euphoric</button>
+              <button class="pill" data-testid="mood-melancholic">Melancholic</button>
+              <button class="pill" data-testid="mood-hype">Hype</button>
+              <button class="pill" data-testid="mood-romantic">Romantic</button>
+              <button class="pill" data-testid="mood-dark">Dark</button>
+              <button class="pill" data-testid="mood-chill">Chill</button>
+            </div>
+          </div>
+          <div>
+            <div class="label-mini" style="display:flex;justify-content:space-between">
+              <span>Tempo</span>
+              <span style="font-family:'JetBrains Mono',monospace;color:var(--orange)"><span id="tempoVal">118</span> BPM</span>
+            </div>
+            <input type="range" min="60" max="180" value="118" class="slider" id="tempoRange" data-testid="generator-tempo" />
+          </div>
+        </div>
+
+        <div class="player">
+          <button class="pbtn sun-glow" data-testid="generator-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5z"/></svg></button>
+          <div class="info">
+            <div class="file">midnight_drive_v3.wav</div>
+            <div class="meta"><span id="genreLabel">Pop</span> · <span id="moodLabel">Euphoric</span> · 2:48</div>
+          </div>
+          <svg class="wave" viewBox="0 0 800 80" preserveAspectRatio="none">
+            <defs><linearGradient id="wfg" x1="0" x2="1"><stop offset="0%" stop-color="#ffb347"/><stop offset="50%" stop-color="#ff7a18"/><stop offset="100%" stop-color="#ff2d8f"/></linearGradient></defs>
+          </svg>
+          <a class="gen-btn shine" href="https://ai.sunodistro.com/login.php" data-testid="generator-generate">Generate</a>
+        </div>
+      </div>
+
+      <div class="genres" id="genres">
+        <!-- populated by JS -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ============ AI LYRICS ============ -->
+<section id="lyrics" class="section">
+  <div class="container">
+    <div class="lyrics-grid">
+      <div>
+        <span class="badge eyebrow"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" class="dot"><path d="M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8L19 13M15 9a2 2 0 002-2V5M5 19l3-3"/></svg> 02 · AI Lyrics Generator</span>
+        <h2 class="display">Words that <span class="gradient-text">scan, rhyme</span> and stick.</h2>
+        <p class="subtitle">Write a verse, hook or bridge in any language and mood. Edit live, regenerate any line, lock the rhyme scheme — and export ready to record.</p>
+        <div class="lyrics-features">
+          <div class="item"><span class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span> Verse · Hook · Bridge structure</div>
+          <div class="item"><span class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span> Multi-language &amp; cultural context</div>
+          <div class="item"><span class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span> Live regeneration per line</div>
+          <div class="item"><span class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span> Locks rhyme scheme &amp; syllable count</div>
+        </div>
+        <a class="btn btn-light shine" href="https://ai.sunodistro.com/login.php" data-testid="lyrics-cta" style="margin-top:32px">Write a Song
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="glass-strong sun-glow" style="padding:8px;border-radius:24px">
+        <div class="editor">
+          <div class="titlebar">
+            <div class="dots"><i style="background:rgba(239,68,68,0.6)"></i><i style="background:rgba(234,179,8,0.6)"></i><i style="background:rgba(34,197,94,0.6)"></i></div>
+            <div class="filename">midnight_drive.lyrics</div>
+            <div class="status"><i></i>AI writing</div>
+          </div>
+          <div class="pad" id="lyricsPad"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ============ AI STUDIO ============ -->
+<section id="studio" class="section" style="overflow:hidden">
+  <div style="position:absolute;inset:0;pointer-events:none;opacity:.6;background:radial-gradient(ellipse at 20% 30%,rgba(255,45,143,0.12),transparent 50%),radial-gradient(ellipse at 80% 70%,rgba(255,122,24,0.12),transparent 50%)"></div>
+  <div class="container" style="position:relative">
+    <div style="text-align:center">
+      <span class="badge eyebrow"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" class="dot"><path d="M12 2a3 3 0 00-3 3v7a3 3 0 006 0V5a3 3 0 00-3-3zM19 10v2a7 7 0 01-14 0v-2M12 19v3"/></svg> 03 · AI Studio</span>
+      <h2 class="display">A studio that <span class="gradient-text">listens back</span>.</h2>
+      <p class="subtitle" style="margin-left:auto;margin-right:auto">Record vocals, isolate stems, clean noise, tune pitch and master your track — inside a single futuristic, AI-assisted recording environment.</p>
+    </div>
+
+    <div class="studio-stage glass-strong sun-glow">
+      <div class="canvas">
+        <img src="https://static.prod-images.emergentagent.com/jobs/835616fc-14ca-4a2f-8251-540eb5ba159b/images/54178b36aa7daf0ebe1d113670ffb7793435f8bd07faf1f760fc9f78f8ea67e4.png" alt="AI Studio" />
+
+        <div class="studio-overlay" style="top:24px;left:24px;display:none;align-items:center;gap:12px" class="md-flex">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ffb46b" stroke-width="2"><path d="M3 18v-6a9 9 0 0118 0v6M21 19a2 2 0 01-2 2h-1v-7h3v5M3 19a2 2 0 002 2h1v-7H3v5"/></svg>
+          <div class="eq">
+            <span style="height:60%;animation-delay:0s"></span><span style="height:90%;animation-delay:.1s"></span><span style="height:40%;animation-delay:.2s"></span><span style="height:70%;animation-delay:.3s"></span><span style="height:100%;animation-delay:.4s"></span><span style="height:55%;animation-delay:.5s"></span><span style="height:85%;animation-delay:.6s"></span><span style="height:35%;animation-delay:.7s"></span><span style="height:65%;animation-delay:.8s"></span><span style="height:95%;animation-delay:.9s"></span>
+          </div>
+          <span style="font-size:10px;font-family:'JetBrains Mono',monospace;color:rgba(255,255,255,0.6)">−6.2 LUFS</span>
+        </div>
+
+        <div class="studio-overlay" style="bottom:24px;left:24px;max-width:280px">
+          <div class="label-mini">Vocal Isolation</div>
+          <div class="studio-bar"><div class="fill"></div></div>
+          <div style="display:flex;gap:6px;margin-top:12px;font-size:10px">
+            <span style="padding:4px 8px;border-radius:999px;background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7)">De-noise</span>
+            <span style="padding:4px 8px;border-radius:999px;background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7)">De-reverb</span>
+            <span style="padding:4px 8px;border-radius:999px;background:linear-gradient(90deg,var(--orange),var(--pink));color:#000">Auto-tune</span>
+          </div>
+        </div>
+
+        <div class="studio-overlay" style="bottom:24px;right:24px;max-width:240px">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div class="label-mini" style="margin:0">Mastering Preset</div>
+            <svg class="slow-spin" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ffb46b" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+          </div>
+          <div style="font-size:14px;font-weight:500;margin-top:8px">Streaming · Loud</div>
+          <div style="display:grid;grid-template-columns:repeat(9,1fr);gap:3px;margin-top:10px">
+            <i style="height:12px;border-radius:2px;background:linear-gradient(to top,rgba(255,122,24,0.4),rgba(255,45,143,0.4))"></i>
+            <i style="height:18px;border-radius:2px;background:linear-gradient(to top,rgba(255,122,24,0.4),rgba(255,45,143,0.4))"></i>
+            <i style="height:24px;border-radius:2px;background:linear-gradient(to top,rgba(255,122,24,0.4),rgba(255,45,143,0.4))"></i>
+            <i style="height:16px;border-radius:2px;background:linear-gradient(to top,rgba(255,122,24,0.4),rgba(255,45,143,0.4))"></i>
+            <i style="height:22px;border-radius:2px;background:linear-gradient(to top,rgba(255,122,24,0.4),rgba(255,45,143,0.4))"></i>
+            <i style="height:26px;border-radius:2px;background:linear-gradient(to top,rgba(255,122,24,0.4),rgba(255,45,143,0.4))"></i>
+            <i style="height:20px;border-radius:2px;background:linear-gradient(to top,rgba(255,122,24,0.4),rgba(255,45,143,0.4))"></i>
+            <i style="height:14px;border-radius:2px;background:linear-gradient(to top,rgba(255,122,24,0.4),rgba(255,45,143,0.4))"></i>
+            <i style="height:18px;border-radius:2px;background:linear-gradient(to top,rgba(255,122,24,0.4),rgba(255,45,143,0.4))"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="studio-workflow" id="studioWorkflow"></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ============ DISTRIBUTION ============ -->
+<section id="distribution" class="section">
+  <div class="container">
+    <div style="text-align:center">
+      <span class="badge eyebrow"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" class="dot"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg> 04 · Global Distribution</span>
+      <h2 class="display">Release <span class="gradient-text">everywhere</span>.</h2>
+      <p class="subtitle" style="margin-left:auto;margin-right:auto">Distribute your music globally with 100% royalties. 150+ stores, automatic UPC/ISRC, official artist channel and instant takedowns.</p>
+    </div>
+
+    <div class="dist-grid">
+      <div class="world glass-strong" id="worldMap"></div>
+
+      <div class="timeline glass">
+        <div class="label-mini">Release Timeline · Single</div>
+        <div class="timeline-row"><span class="marker done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><div class="label done">Submit master &amp; artwork</div></div>
+        <div class="timeline-row"><span class="marker done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><div class="label done">Auto-generate UPC / ISRC</div></div>
+        <div class="timeline-row"><span class="marker done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><div class="label done">Quality check &amp; metadata</div></div>
+        <div class="timeline-row"><span class="marker active"><i></i></span><div class="label">Delivery to stores</div><div class="time">2h 14m</div></div>
+        <div class="timeline-row"><span class="marker todo"></span><div class="label">Live worldwide</div></div>
+        <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.4)">Royalty share</div>
+            <div style="font-family:'Outfit',sans-serif;font-size:26px;font-weight:700" class="gradient-text">100%</div>
+          </div>
+          <a class="btn btn-light shine" href="https://release.sunodistro.com/auth/register" data-testid="distribution-cta" style="padding:8px 16px;font-size:12px">Release a track</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="platforms glass" style="background:transparent;border:0" id="platformsGrid"></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ============ FEATURES ============ -->
+<section id="features" class="section">
+  <div class="container">
+    <div style="text-align:center">
+      <span class="badge eyebrow"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" class="dot"><path d="M12 3l1.9 5.8 6.1.5-4.6 4 1.4 6L12 16l-4.8 3.3 1.4-6L4 9.3l6.1-.5L12 3z"/></svg> 05 · Everything you need</span>
+      <h2 class="display">Twelve tools. <span class="gradient-text">One platform.</span></h2>
+      <p class="subtitle" style="margin-left:auto;margin-right:auto">The complete toolkit for modern music creators — from the first lyric to the last royalty payment.</p>
+    </div>
+    <div class="features" id="featuresGrid"></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ============ DASHBOARD ============ -->
+<section id="dashboard" class="section" style="overflow:hidden">
+  <div class="container">
+    <div style="text-align:center">
+      <span class="badge eyebrow"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" class="dot"><path d="M3 3v18h18M7 14l4-4 4 4 5-5"/></svg> 06 · Creator Dashboard</span>
+      <h2 class="display">Your <span class="gradient-text">music HQ</span>.</h2>
+      <p class="subtitle" style="margin-left:auto;margin-right:auto">Streams, earnings, fans, releases, AI credits — every number that matters, beautifully arranged.</p>
+    </div>
+
+    <div class="dash-wrap">
+      <div class="dash-glow"></div>
+      <div class="dash-frame glass-strong sun-glow">
+        <div class="dash-screen">
+          <div class="bar">
+            <div class="dots"><i style="background:rgba(239,68,68,0.6)"></i><i style="background:rgba(234,179,8,0.6)"></i><i style="background:rgba(34,197,94,0.6)"></i></div>
+            <div class="url">app.sunodistro.com / dashboard</div>
+            <div style="width:48px"></div>
+          </div>
+          <img src="https://static.prod-images.emergentagent.com/jobs/835616fc-14ca-4a2f-8251-540eb5ba159b/images/69bcf73fce1b9d89bfa830bcbce6b3a5561c9bd960236ab72b1d1b037dbdf0ca.png" alt="dashboard"/>
+        </div>
+      </div>
+      <div class="dash-tile glass-strong sun-glow left">
+        <div class="lbl">Monthly listeners</div>
+        <div class="big gradient-text">412,890</div>
+        <div class="delta" style="color:#34d399">▲ 18.4% vs last month</div>
+      </div>
+      <div class="dash-tile glass-strong right">
+        <div class="lbl">Royalties this month</div>
+        <div class="big">$ 8,412.20</div>
+        <div class="delta" style="color:#ffb46b;display:flex;align-items:center;gap:6px">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          Auto-paid weekly
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ============ PRICING ============ -->
+<section id="pricing" class="section">
+  <div class="container">
+    <div style="text-align:center">
+      <span class="badge eyebrow"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" class="dot"><path d="M3 7l4 10 5-7 5 7 4-10"/></svg> 07 · Pricing</span>
+      <h2 class="display">Premium music. <span class="gradient-text">Indie price.</span></h2>
+      <p class="subtitle" style="margin-left:auto;margin-right:auto">Pick a plan, release for a year, keep 100% of your royalties. Upgrade anytime.</p>
+    </div>
+
+    <div class="pricing">
+      <div class="plan glass" data-testid="plan-artist">
+        <div class="pname">Artist</div>
+        <div class="pblurb">Perfect for independent musicians ready to release globally.</div>
+        <div class="price-row"><span class="price">$20</span><span class="per">/ year</span></div>
+        <a class="plan-cta shine" href="https://release.sunodistro.com/auth/register" data-testid="plan-artist-cta">Select Artist Plan <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+        <ul>
+          <li><span class="li-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>Unlimited Releases</li>
+          <li><span class="li-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>100% royalties</li>
+          <li><span class="li-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>Custom release date</li>
+          <li><span class="li-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>Free UPC / ISRC</li>
+          <li><span class="li-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>Official Artist Channel</li>
+          <li><span class="li-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>Instagram profile linking</li>
+          <li><span class="li-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>Exclusive access to new features</li>
+        </ul>
+      </div>
+
+      <div class="plan glass" data-testid="plan-label">
+        <div class="pname">Label</div>
+        <div class="pblurb">For record labels managing multiple artists and extensive catalogs.</div>
+        <div class="price-row"><span class="price">$50</span><span class="per">/ year</span></div>
+        <a class="plan-cta shine" href="https://release.sunodistro.com/auth/register" data-testid="plan-label-cta">Choose Label Plan <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+        <ul>
+          <li><span class="li-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>Unlimited Releases</li>
+          <li><span class="li-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>Multiple Artists</li>
+          <li><span class="li-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>100 Credits for AI Studio</li>
+          <li><span class="li-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>100% royalties</li>
+          <li><span class="li-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>Accepts AI Generated Music</li>
+          <li><span class="li-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>Free UPC / ISRC</li>
+          <li><span class="li-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>Official Artist Channel</li>
+          <li><span class="li-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>Instagram profile linking</li>
+        </ul>
+      </div>
+
+      <div class="plan featured sun-border sun-glow" data-testid="plan-ultimate">
+        <div class="ribbon">Most Powerful</div>
+        <div class="pname">Ultimate
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ffb46b" stroke-width="2"><path d="M2 6l4 14h12L22 6l-5 4-5-8-5 8-5-4z"/></svg>
+        </div>
+        <div class="pblurb">Premium distribution with maximum AI benefits for power users.</div>
+        <div class="price-row"><span class="price gradient-text">$55</span><span class="per">/ year</span></div>
+        <a class="plan-cta shine" href="https://release.sunodistro.com/auth/register" data-testid="plan-ultimate-cta">Go Ultimate <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+        <ul>
+          <li><span class="li-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>Everything in Label Plan</li>
+          <li><span class="li-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>1000 Credits for AI Studio</li>
+          <li><span class="li-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>AI Music Generator</li>
+          <li><span class="li-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>AI Lyrics Generator</li>
+          <li><span class="li-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>Mastering Studio</li>
+          <li><span class="li-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>AI Artwork Generator</li>
+          <li><span class="li-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>Stem Extractor</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:40px;font-size:12px;color:rgba(255,255,255,0.4)">All plans include 100% royalties · cancel anytime · prices in USD</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section id="testimonials" class="section">
+  <div class="container">
+    <div style="text-align:center">
+      <span class="badge eyebrow"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" class="dot"><path d="M12 3l1.9 5.8 6.1.5-4.6 4 1.4 6L12 16l-4.8 3.3 1.4-6L4 9.3l6.1-.5L12 3z"/></svg> 08 · Creators</span>
+      <h2 class="display">Built by creators, <span class="gradient-text">for creators</span>.</h2>
+    </div>
+    <div class="tests" id="testsGrid"></div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final" id="finalCta">
+  <div class="final-particles" id="finalParticles"></div>
+  <div class="container">
+    <h2>The future of music<br/><span class="gradient-text">starts here.</span></h2>
+    <p>Join thousands of artists generating, recording and distributing on the platform built like an instrument.</p>
+    <div class="row">
+      <a class="btn btn-primary shine sun-glow" href="https://release.sunodistro.com/auth/register" data-testid="final-cta-start">Start Free
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="https://ai.sunodistro.com/login.php" data-testid="final-cta-studio">Explore AI Studio
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#top" class="nav-logo">
+          <img src="https://customer-assets.emergentagent.com/job_835616fc-14ca-4a2f-8251-540eb5ba159b/artifacts/yraxpcza_1774281721689.png" alt="SunoDistro"/>
+          <span class="nav-logo-text" style="font-size:20px">suno<span class="gradient-text">distro</span></span>
+        </a>
+        <p>The operating system for modern music creators. Generate, sing, master and distribute — from one platform.</p>
+        <div class="socials">
+          <a href="#" data-testid="social-instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.25.07 1.65.07 4.85s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.25.06-1.65.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 01-1.38-.9 3.7 3.7 0 01-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.4 2.21 8.8 2.2 12 2.2zM12 0C8.74 0 8.33 0 7.05.07 5.77.13 4.9.33 4.14.63a5.92 5.92 0 00-2.14 1.4A5.92 5.92 0 00.6 4.16C.3 4.92.1 5.79.05 7.07 0 8.34 0 8.75 0 12s0 3.66.07 4.93c.06 1.28.26 2.15.56 2.92.31.8.73 1.48 1.4 2.14a5.92 5.92 0 002.14 1.4c.77.3 1.64.5 2.92.56C8.34 24 8.75 24 12 24s3.66 0 4.93-.07c1.28-.06 2.15-.26 2.92-.56a5.92 5.92 0 002.14-1.4 5.92 5.92 0 001.4-2.14c.3-.77.5-1.64.56-2.92.06-1.27.07-1.68.07-4.93s0-3.66-.07-4.93c-.06-1.28-.26-2.15-.56-2.92a5.92 5.92 0 00-1.4-2.14A5.92 5.92 0 0019.85.63c-.77-.3-1.64-.5-2.92-.56C15.66 0 15.25 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zm0 10.16a4 4 0 110-8 4 4 0 010 8zm6.4-11.84a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg></a>
+          <a href="#" data-testid="social-tiktok" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005.8 20.1a6.34 6.34 0 0010.86-4.43V8.36a8.16 8.16 0 004.77 1.52V6.43a4.85 4.85 0 01-1.84-.27z"/></svg></a>
+          <a href="#" data-testid="social-youtube" aria-label="YouTube Music"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 19.2A7.2 7.2 0 1119.2 12 7.2 7.2 0 0112 19.2zm0-13.2a6 6 0 106 6 6 6 0 00-6-6zm-1.45 9.3v-6.6L15.9 12z"/></svg></a>
+          <a href="#" data-testid="social-spotify" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.52 17.34c-.24.36-.66.48-1.02.24-2.82-1.74-6.36-2.1-10.56-1.14-.42.12-.78-.18-.9-.54-.12-.42.18-.78.54-.9 4.56-1.02 8.52-.6 11.64 1.32.42.18.48.66.3 1.02zm1.44-3.3c-.3.42-.84.6-1.26.3-3.24-1.98-8.16-2.58-11.94-1.38-.48.12-1.02-.12-1.14-.6-.12-.48.12-1.02.6-1.14 4.38-1.32 9.84-.66 13.62 1.62.36.18.54.78.12 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.3c-.6.18-1.2-.18-1.38-.72-.18-.6.18-1.2.72-1.38 4.26-1.26 11.28-1.02 15.72 1.62.54.3.72 1.02.42 1.56-.3.42-1.02.6-1.56.3z"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <div class="ch">Platform</div>
+        <ul>
+          <li><a href="https://ai.sunodistro.com/login.php">AI Music</a></li>
+          <li><a href="https://ai.sunodistro.com/login.php">Lyrics</a></li>
+          <li><a href="https://ai.sunodistro.com/login.php">Studio</a></li>
+          <li><a href="https://release.sunodistro.com/auth/register">Distribution</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <div class="ch">Account</div>
+        <ul>
+          <li><a href="https://release.sunodistro.com/auth/login">Log in</a></li>
+          <li><a href="https://release.sunodistro.com/auth/register">Sign up</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="https://release.sunodistro.com/auth/login">Dashboard</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <div class="ch">Company</div>
+        <ul>
+          <li><a href="#">Support</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mega">
+      <div class="mega-stroke">SUNODISTRO</div>
+      <div class="mega-fill"><div class="text">SUNODISTRO</div></div>
+    </div>
+
+    <div class="copy">
+      <div>© <span id="year"></span> SunoDistro. Create. Sing. Distribute.</div>
+      <div class="links">
+        <a href="#">Terms</a><a href="#">Privacy</a><a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ SCRIPTS ============ -->
+<script>
+/* ---------- INLINE SVG ICONS ---------- */
+const ICONS = {
+  spotify:  '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.52 17.34c-.24.36-.66.48-1.02.24-2.82-1.74-6.36-2.1-10.56-1.14-.42.12-.78-.18-.9-.54-.12-.42.18-.78.54-.9 4.56-1.02 8.52-.6 11.64 1.32.42.18.48.66.3 1.02zm1.44-3.3c-.3.42-.84.6-1.26.3-3.24-1.98-8.16-2.58-11.94-1.38-.48.12-1.02-.12-1.14-.6-.12-.48.12-1.02.6-1.14 4.38-1.32 9.84-.66 13.62 1.62.36.18.54.78.12 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.3c-.6.18-1.2-.18-1.38-.72-.18-.6.18-1.2.72-1.38 4.26-1.26 11.28-1.02 15.72 1.62.54.3.72 1.02.42 1.56-.3.42-1.02.6-1.56.3z"/></svg>',
+  apple:    '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 00-1.877-.726 10.36 10.36 0 00-1.564-.15c-.04-.003-.083-.01-.124-.013H5.986c-.152.01-.303.017-.455.026-.747.043-1.49.123-2.193.4-1.336.53-2.3 1.452-2.865 2.78a6.55 6.55 0 00-.44 1.84c-.075.85-.054 1.7-.054 2.55v8.95c0 .9.012 1.8.124 2.69.187 1.486.95 2.59 2.27 3.297.567.302 1.18.476 1.81.582l1.05.14c.18.018.36.027.54.04h12.13l.46-.04c.81-.064 1.62-.176 2.37-.498 1.36-.587 2.27-1.62 2.71-3.03.19-.6.27-1.22.31-1.85.06-.92.05-1.85.05-2.77v-8.97zm-6.341 10.521c-.99 1.02-2.18 1.59-3.6 1.69-.36.024-.71.013-1.05-.05a4.94 4.94 0 01-2.88-1.69c-.92-1.04-1.36-2.27-1.43-3.65-.07-1.34.34-2.55 1.15-3.62.83-1.1 1.95-1.78 3.31-2.07a4.5 4.5 0 011.6-.08c1.36.18 2.5.83 3.42 1.86.83.93 1.26 2.03 1.3 3.27.05 1.36-.39 2.58-1.32 3.58v.76z"/></svg>',
+  youtube:  '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22.2A10.2 10.2 0 1122.2 12 10.2 10.2 0 0112 22.2zm0-18.6a8.4 8.4 0 108.4 8.4A8.42 8.42 0 0012 3.6zm-1.8 12V8.4L16.2 12z"/></svg>',
+  tiktok:   '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005.8 20.1a6.34 6.34 0 0010.86-4.43V8.36a8.16 8.16 0 004.77 1.52V6.43a4.85 4.85 0 01-1.84-.27z"/></svg>',
+  instagram:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.25.07 1.65.07 4.85s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.25.06-1.65.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 01-1.38-.9 3.7 3.7 0 01-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.4 2.21 8.8 2.2 12 2.2zM12 0C8.74 0 8.33 0 7.05.07 5.77.13 4.9.33 4.14.63a5.92 5.92 0 00-2.14 1.4A5.92 5.92 0 00.6 4.16C.3 4.92.1 5.79.05 7.07 0 8.34 0 8.75 0 12s0 3.66.07 4.93c.06 1.28.26 2.15.56 2.92.31.8.73 1.48 1.4 2.14a5.92 5.92 0 002.14 1.4c.77.3 1.64.5 2.92.56C8.34 24 8.75 24 12 24s3.66 0 4.93-.07c1.28-.06 2.15-.26 2.92-.56a5.92 5.92 0 002.14-1.4 5.92 5.92 0 001.4-2.14c.3-.77.5-1.64.56-2.92.06-1.27.07-1.68.07-4.93s0-3.66-.07-4.93c-.06-1.28-.26-2.15-.56-2.92a5.92 5.92 0 00-1.4-2.14A5.92 5.92 0 0019.85.63c-.77-.3-1.64-.5-2.92-.56C15.66 0 15.25 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zm0 10.16a4 4 0 110-8 4 4 0 010 8zm6.4-11.84a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg>',
+  amazon:   '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.36 12.96a2.62 2.62 0 01-.5 1.66c-.4.55-.96.96-1.66 1.2-.7.27-1.4.4-2.1.4-1.1 0-2-.3-2.7-.92-.7-.6-1.05-1.45-1.05-2.5 0-1.1.34-1.95 1.02-2.55.7-.6 1.6-.92 2.74-.96l2.4-.05v-.4c0-.46-.1-.8-.32-1-.2-.18-.55-.3-1-.3-.42 0-.74.1-.97.3-.23.2-.34.5-.34.9 0 .12-.04.22-.1.3-.07.08-.15.13-.27.15l-1.86.2c-.16 0-.27-.05-.34-.16-.07-.1-.1-.22-.07-.36.16-.85.6-1.5 1.36-1.96.74-.45 1.65-.68 2.7-.68 1.18 0 2.13.3 2.84.9.7.6 1.05 1.5 1.05 2.66v3.18zm-2.83-.6v-.34l-1.97.05c-.86 0-1.28.35-1.28 1 0 .3.1.55.3.73.2.18.5.27.86.27.4 0 .77-.1 1.1-.3.34-.2.6-.46.78-.78.13-.2.2-.42.2-.62zM3.5 19.9c.6.45 1.3.83 2.07 1.1.78.28 1.55.5 2.32.6.8.13 1.55.18 2.27.18.83 0 1.65-.08 2.45-.27.8-.18 1.5-.45 2.13-.85.13-.07.16-.18.07-.32-.1-.13-.22-.18-.36-.13l-.36.13c-.65.27-1.35.46-2.1.6-.74.13-1.5.2-2.25.2-1.6 0-3.1-.27-4.55-.83-1.43-.55-2.65-1.32-3.66-2.36-.13-.1-.27-.13-.4-.05-.13.08-.16.22-.1.4.5.5 1.05 1.04 1.7 1.6zm15.8-2.3c-.13-.13-.4-.2-.85-.27-.45-.06-.92-.06-1.4 0-.5.05-1 .16-1.43.34-.13.05-.22.13-.27.27-.05.13-.05.27.02.4.07.13.16.22.3.27.13.05.27.05.4 0 .5-.13 1-.22 1.5-.27.5-.05 1 .04 1.5.27.13.05.27.05.4 0 .13-.05.18-.13.16-.27-.1-.55-.16-.96-.32-1.1zM7.43 11.18c0-.4.1-.7.3-.92.2-.22.5-.32.92-.32s.74.1.92.32c.18.22.27.55.27.97v.4l-2.4.05v-.5z"/></svg>',
+  soundcloud:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.4 7.32V18h7.32c1.36 0 2.46-1.1 2.46-2.46 0-1.32-1.02-2.4-2.31-2.46-.14-2.4-2.13-4.32-4.6-4.32-1.04 0-1.97.34-2.74.92l-.13.64zm-1.8 1.18a4.6 4.6 0 00-.62-.05c-.34 0-.66.05-.97.13V18h1.6V8.5zm-3.36.78c-.45-.34-1-.55-1.6-.55-.27 0-.55.04-.83.13V18h2.43V9.28zm-3.92.5a3.6 3.6 0 00-.55-.04c-.34 0-.66.04-.97.13L3.5 14l.27 4h2.66l.05-8.55-.78-.18zm-5.4.55c-.18-.04-.36-.05-.55-.05-.13 0-.27 0-.4.03-.13.04-.18.18-.13.32l.13 3.34-.13 2.83c-.05.13.04.27.18.32.13.04.27.04.4 0 .13-.05.18-.18.13-.32l.18-2.83-.18-3.34c-.05-.13-.13-.27.27-.32z"/></svg>',
+  tidal:    '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.012 3.992L8.008 7.996 4.004 3.992 0 7.996 4.004 12l4.004-4.004L12.012 12l-4.004 4.004 4.004 4.004 4.004-4.004L12.012 12l4.004-4.004 4.004 4.004L24 7.996l-4.004-4.004-3.98 3.98z"/></svg>',
+  pandora:  '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M1.882 0v24h6v-8.5h4.5c5.5 0 9.236-3 9.236-7.5C21.618 3.5 17.882 0 12.382 0H1.882z"/></svg>',
+  deezer:   '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.81 4.16h5.02v3.3h-5.02zm0 4.61h5.02v3.3h-5.02zm-6.27 0h5.02v3.3h-5.02zm0 4.62h5.02v3.3h-5.02zm6.27 0h5.02v3.3h-5.02zm-6.27 4.61h5.02v3.3h-5.02zm-6.27-4.61h5.02v3.3H6.27zm0 4.61h5.02v3.3H6.27zM0 13.39h5.02v3.3H0zm0 4.61h5.02v3.3H0z"/></svg>',
+  music:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>',
+  wand:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8L19 13M15 9a2 2 0 002-2V5M5 19l3-3"/></svg>',
+  mic:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 00-3 3v7a3 3 0 006 0V5a3 3 0 00-3-3zM19 10v2a7 7 0 01-14 0v-2M12 19v3"/></svg>',
+  image:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>',
+  scissors: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"/></svg>',
+  wave:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h2l3-9 4 18 4-13 3 7h4"/></svg>',
+  globe:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>',
+  radio:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 010 8.49M7.76 16.24a6 6 0 010-8.49M20.49 4.93a11 11 0 010 14.14M3.51 19.07a11 11 0 010-14.14"/></svg>',
+  coins:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1115.61 21M7 6h1v4M16.71 13.88l.71.71-2.83 2.83"/></svg>',
+  chart:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 14l4-4 4 4 5-5"/></svg>',
+  hash:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9h16M4 15h16M10 3L8 21M16 3l-2 18"/></svg>',
+  crown:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6l4 14h12L22 6l-5 4-5-8-5 8-5-4z"/></svg>',
+  star:     '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>',
+};
+
+/* ---------- DATA ---------- */
+const GENRES = [
+  { name:"Pop",       img:"https://static.prod-images.emergentagent.com/jobs/835616fc-14ca-4a2f-8251-540eb5ba159b/images/4057158b6eef32a395e154e62a12297b0d207e772c18bb9bef7c38b571010818.png", bpm:"118 BPM" },
+  { name:"Rap",       img:"https://static.prod-images.emergentagent.com/jobs/835616fc-14ca-4a2f-8251-540eb5ba159b/images/270096191a4a99d89f75245dc816134b84e9a9c1dd912fa5186468b9356e9049.png", bpm:"92 BPM" },
+  { name:"Bollywood", img:"https://static.prod-images.emergentagent.com/jobs/835616fc-14ca-4a2f-8251-540eb5ba159b/images/22ff2fcdc84edaeb1612452774f9ce9b60537ca4a9bb2f398c81846b91424a6e.png", bpm:"104 BPM" },
+  { name:"Punjabi",   img:"https://static.prod-images.emergentagent.com/jobs/835616fc-14ca-4a2f-8251-540eb5ba159b/images/7483c3210be952d9f619c8f9a9f5c6bf9d0a777f2f3c0630acd3a4cd894a670d.png", bpm:"100 BPM" },
+  { name:"EDM",       img:"https://static.prod-images.emergentagent.com/jobs/835616fc-14ca-4a2f-8251-540eb5ba159b/images/9fd7036cc65855f9a789b2c2d83a1f999ae0107110d3cfc5279f99980bd72722.png", bpm:"128 BPM" },
+  { name:"Lo-fi",     img:"https://static.prod-images.emergentagent.com/jobs/835616fc-14ca-4a2f-8251-540eb5ba159b/images/13e915030986f64dafb0d81cdf8e981eb12f227137bc02abffe69b3369b200f0.png", bpm:"72 BPM" },
+  { name:"Rock",      img:"https://static.prod-images.emergentagent.com/jobs/835616fc-14ca-4a2f-8251-540eb5ba159b/images/b719da95fd20d260e90e595648175aee1c156deaff803e851fd2dfbc0239d34f.png", bpm:"140 BPM" },
+];
+
+const FEATURES = [
+  ["music",    "AI Music Generator",      "Turn a prompt into a finished song with vocals, instruments and arrangement."],
+  ["wand",     "AI Lyrics Generator",     "Verse, hook, bridge — written in your voice, mood, language and rhyme scheme."],
+  ["mic",      "AI Studio",               "Record vocals, clean noise and produce with a futuristic in-browser studio."],
+  ["image",    "AI Artwork Generator",    "Cinematic cover art generated in seconds, matched to your track’s mood."],
+  ["scissors", "Stem Extractor",          "Isolate vocals, drums, bass and melody from any track with one click."],
+  ["wave",     "Mastering Studio",        "AI mastering tuned for streaming loudness, clarity and depth across platforms."],
+  ["globe",    "Global Distribution",     "Release to 150+ stores worldwide — Spotify, Apple Music, YouTube, TikTok and more."],
+  ["radio",    "Official Artist Channel", "Claim your verified artist profile on Spotify and YouTube straight from your dashboard."],
+  ["coins",    "Royalty Tracking",        "100% royalties, transparent splits, real-time accounting and instant withdrawals."],
+  ["chart",    "Analytics Dashboard",     "Streams, saves, fans and demographics — beautifully visualised in real time."],
+  ["hash",     "Free UPC / ISRC",         "Industry-standard codes generated for every release at zero extra cost."],
+  ["instagram","Instagram Profile Link",  "Link your music to your Instagram profile so listeners discover you instantly."],
+];
+
+const STUDIO_WF = [
+  ["mic","Record Vocals","One-tap browser recording"],
+  ["scissors","Stem Extract","Separate vocals & instruments"],
+  ["wave","Master Track","AI tuned for streaming"],
+  ["image","Cover Art","Cinematic AI artwork"],
+];
+
+const PLATFORMS = [
+  ["spotify","Spotify","#1DB954"],
+  ["apple","Apple Music","#FA57C1"],
+  ["youtube","YouTube Music","#FF0000"],
+  ["tiktok","TikTok","#ffffff"],
+  ["instagram","Instagram","#E1306C"],
+  ["amazon","Amazon Music","#00A8E1"],
+  ["soundcloud","SoundCloud","#FF7700"],
+  ["tidal","Tidal","#ffffff"],
+  ["pandora","Pandora","#3668FF"],
+  ["deezer","Deezer","#A238FF"],
+];
+
+const TESTIMONIALS = [
+  { name:"Arjun Mehra", role:"Indie Producer · Mumbai", quote:"I wrote, sang and shipped my EP from my bedroom in three days. SunoDistro turned my laptop into a record label.", img:"https://images.unsplash.com/photo-1760004941335-6feccb7f800a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzV8MHwxfHNlYXJjaHwyfHxwb3J0cmFpdCUyMHByb2Zlc3Npb25hbCUyMG11c2ljJTIwcHJvZHVjZXIlMjBkYXJrJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3Nzg5MzQ5NjJ8MA&ixlib=rb-4.1.0&q=85", stat:"+412% monthly listeners" },
+  { name:"Lena Park",   role:"Vocalist · Los Angeles",  quote:"The AI studio cleaned my vocals better than the engineer I was paying $400 a session. And distribution is one click.", img:"https://images.unsplash.com/photo-1762290965691-e74072600c03?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzV8MHwxfHNlYXJjaHwxfHxwb3J0cmFpdCUyMHByb2Zlc3Npb25hbCUyMG11c2ljJTIwcHJvZHVjZXIlMjBkYXJrJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3Nzg5MzQ5NjJ8MA&ixlib=rb-4.1.0&q=85", stat:"1.2M Spotify streams" },
+  { name:"Dre Williams",role:"Label Owner · Atlanta",   quote:"We manage 38 artists on Ultimate. Royalty splits, UPC codes, analytics — it replaced three tools and a spreadsheet.", img:"https://images.unsplash.com/photo-1638983752157-052aa1f15bf1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzV8MHwxfHNlYXJjaHwzfHxwb3J0cmFpdCUyMHByb2Zlc3Npb25hbCUyMG11c2ljJTIwcHJvZHVjZXIlMjBkYXJrJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3Nzg5MzQ5NjJ8MA&ixlib=rb-4.1.0&q=85", stat:"38 artists distributed" },
+];
+
+const LYRICS = [
+  { tag:"VERSE 1",     text:"Headlights bleeding through the monsoon haze,\nCity lights remembering your name." },
+  { tag:"PRE-CHORUS",  text:"Every neon sign sings a softer song,\nEvery shadow knows where I belong." },
+  { tag:"CHORUS",      text:"We were sunlight chasing midnight blue,\nA borrowed melody, a borrowed view —\nCreate, sing, distribute the truth,\nEvery heartbeat starts with you." },
+  { tag:"VERSE 2",     text:"Coffee cooling on the studio glass,\nA chord progression that refuses to pass." },
+  { tag:"BRIDGE",      text:"If the radio forgets, the streams will know,\nIf the streams forget, the algorithm will glow." },
+];
+
+/* ---------- BUILD GENRES ---------- */
+const genresEl = document.getElementById('genres');
+GENRES.forEach((g,i)=>{
+  const b = document.createElement('button');
+  b.className = 'genre' + (i===0?' active':'');
+  b.dataset.testid = 'genre-'+g.name.toLowerCase();
+  b.dataset.name = g.name;
+  b.innerHTML = `<img src="${g.img}" alt="${g.name}"/><div class="text"><div class="name">${g.name}</div><div class="bpm">${g.bpm}</div></div><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></div>`;
+  b.addEventListener('click', ()=>{
+    document.querySelectorAll('.genre').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById('genreLabel').textContent = g.name;
+    document.getElementById('tempoRange').value = parseInt(g.bpm);
+    document.getElementById('tempoVal').textContent = parseInt(g.bpm);
+  });
+  genresEl.appendChild(b);
+});
+
+/* ---------- MOOD ---------- */
+document.querySelectorAll('#moodPills .pill').forEach(p=>{
+  p.addEventListener('click', ()=>{
+    document.querySelectorAll('#moodPills .pill').forEach(x=>x.classList.remove('active'));
+    p.classList.add('active');
+    document.getElementById('moodLabel').textContent = p.textContent.trim();
+  });
+});
+
+/* ---------- TEMPO ---------- */
+const tr = document.getElementById('tempoRange');
+tr.addEventListener('input', ()=> document.getElementById('tempoVal').textContent = tr.value);
+
+/* ---------- WAVEFORM BARS in player ---------- */
+const wf = document.querySelector('.player .wave');
+if (wf){
+  let bars = '';
+  for (let i=0;i<80;i++){
+    const h = 12 + Math.abs(Math.sin(i*0.42)*28) + (i%5===0?16:0);
+    bars += `<rect x="${i*10+1}" y="${40 - h/2}" width="5" height="${h}" rx="2.5" fill="url(#wfg)" opacity="0.85"/>`;
+  }
+  wf.innerHTML = wf.innerHTML + bars;
+}
+
+/* ---------- LYRICS TYPEWRITER ---------- */
+(()=> {
+  const pad = document.getElementById('lyricsPad');
+  if (!pad) return;
+  let line = 0, ch = 0;
+  function render(){
+    let html = '';
+    for (let i=0;i<line;i++){
+      html += `<span class="section-tag">${LYRICS[i].tag}</span><div>${LYRICS[i].text.replace(/\n/g,'<br/>')}</div>`;
+    }
+    if (line < LYRICS.length){
+      const cur = LYRICS[line];
+      html += `<span class="section-tag">${cur.tag}</span><div>${cur.text.slice(0,ch).replace(/\n/g,'<br/>')}<span class="cursor"></span></div>`;
+    }
+    pad.innerHTML = html;
+  }
+  function tick(){
+    if (line >= LYRICS.length){
+      setTimeout(()=>{ line = 0; ch = 0; render(); tick(); }, 2000);
+      return;
+    }
+    const cur = LYRICS[line];
+    if (ch < cur.text.length){
+      ch++;
+      render();
+      setTimeout(tick, 22);
+    } else {
+      setTimeout(()=>{ line++; ch = 0; render(); tick(); }, 900);
+    }
+  }
+  render();
+  tick();
+})();
+
+/* ---------- STUDIO WORKFLOW ---------- */
+const swfEl = document.getElementById('studioWorkflow');
+STUDIO_WF.forEach(([icon,t,d])=>{
+  const el = document.createElement('div');
+  el.className = 'wf-card glass';
+  el.innerHTML = `<div class="icon-box">${ICONS[icon]}</div><div class="t">${t}</div><div class="d">${d}</div>`;
+  swfEl.appendChild(el);
+});
+
+/* ---------- FEATURES ---------- */
+const featEl = document.getElementById('featuresGrid');
+FEATURES.forEach(([icon,t,d],i)=>{
+  const el = document.createElement('div');
+  el.className = 'feature glass reveal';
+  el.dataset.testid = 'feature-card-'+i;
+  el.innerHTML = `<div class="glow"></div><div class="icon-box">${ICONS[icon]}</div><div class="t">${t}</div><div class="d">${d}</div>`;
+  featEl.appendChild(el);
+});
+
+/* ---------- TESTIMONIALS ---------- */
+const testEl = document.getElementById('testsGrid');
+TESTIMONIALS.forEach((t,i)=>{
+  const el = document.createElement('div');
+  el.className = 'test-card glass reveal';
+  el.dataset.testid = 'testimonial-'+i;
+  el.innerHTML = `
+    <div class="test-head">
+      <img src="${t.img}" alt="${t.name}"/>
+      <div><div class="nm">${t.name}</div><div class="rl">${t.role}</div></div>
+      <div class="stars">${ICONS.star.repeat(5)}</div>
+    </div>
+    <div class="quote">“${t.quote}”</div>
+    <div class="test-foot"><span class="l">Result</span><span class="r gradient-text">${t.stat}</span></div>`;
+  testEl.appendChild(el);
+});
+
+/* ---------- PLATFORMS ---------- */
+const pgEl = document.getElementById('platformsGrid');
+PLATFORMS.forEach(([k,name,color])=>{
+  const el = document.createElement('div');
+  el.className = 'platform glass';
+  el.innerHTML = `<span style="color:${color};display:flex">${ICONS[k]}</span><div class="pname">${name}</div>`;
+  pgEl.appendChild(el);
+});
+
+/* ---------- MARQUEE ---------- */
+const mqt = document.getElementById('marqueeTrack');
+const mq = PLATFORMS.concat(PLATFORMS).map(([k,name,color])=>`<span><span style="color:${color};display:flex">${ICONS[k]}</span>${name}</span>`).join('');
+mqt.innerHTML = mq;
+
+/* ---------- WORLD MAP (SVG) ---------- */
+(()=> {
+  const cities = [
+    [-74,40.7],[-118,34],[-87,41],[-46,-23],[-58,-34],
+    [0,51.5],[2.3,48.8],[13.4,52.5],[-3.7,40.4],[12.4,41.9],
+    [28.97,41],[37.6,55.7],[55.3,25.2],[77.2,28.6],[72.8,19],[88.3,22.5],[80.2,13],
+    [121.5,31.2],[116.4,39.9],[127,37.5],[139.7,35.6],[114.1,22.3],
+    [103.8,1.3],[106.8,-6.2],[151.2,-33.8],[174.7,-36.8],[18.4,-33.9],[31.2,30]
+  ];
+  const dots = cities.map(([lon,lat])=>[((lon+180)/360)*100, ((90-lat)/180)*100]);
+  const ox=50, oy=17;
+  const lines = dots.map(([x,y])=>{
+    const mx=(ox+x)/2, my=(oy+y)/2 - 8;
+    return `<path d="M ${ox} ${oy} Q ${mx} ${my} ${x} ${y}" stroke="url(#mapg)" stroke-width="0.15" fill="none" opacity="0.55" stroke-dasharray="0.6 0.6"/>`;
+  }).join('');
+  const pts = dots.map(([x,y],i)=>`<g><circle cx="${x}" cy="${y}" r="2" fill="url(#dotG)" opacity="0.7"/><circle cx="${x}" cy="${y}" r="0.45" fill="#ffb347"><animate attributeName="r" values="0.45;0.9;0.45" dur="${2+(i%3)}s" repeatCount="indefinite"/></circle></g>`).join('');
+  let gridH = '', gridV = '';
+  for (let i=0;i<10;i++) gridH += `<line x1="0" x2="100" y1="${i*5}" y2="${i*5}" stroke="rgba(255,255,255,0.05)" stroke-width="0.1"/>`;
+  for (let i=0;i<20;i++) gridV += `<line x1="${i*5}" x2="${i*5}" y1="0" y2="50" stroke="rgba(255,255,255,0.05)" stroke-width="0.1"/>`;
+  document.getElementById('worldMap').innerHTML = `
+    <svg viewBox="0 0 100 50" style="position:absolute;inset:0;width:100%;height:100%" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="mapg" x1="0" x2="1"><stop offset="0%" stop-color="#ffb347"/><stop offset="50%" stop-color="#ff7a18"/><stop offset="100%" stop-color="#ff2d8f"/></linearGradient>
+        <radialGradient id="dotG" cx="0.5" cy="0.5" r="0.5"><stop offset="0%" stop-color="#ff7a18" stop-opacity="1"/><stop offset="100%" stop-color="#ff7a18" stop-opacity="0"/></radialGradient>
+      </defs>
+      ${gridH}${gridV}${lines}${pts}
+      <circle cx="50" cy="17" r="1.2" fill="#ff2d8f"><animate attributeName="r" values="0.8;1.6;0.8" dur="1.6s" repeatCount="indefinite"/></circle>
+    </svg>`;
+})();
+
+/* ---------- FINAL CTA PARTICLES ---------- */
+const fp = document.getElementById('finalParticles');
+for (let i=0;i<30;i++){
+  const s = document.createElement('i');
+  s.style.left = ((i*37)%100)+'%';
+  s.style.top = ((i*73)%100)+'%';
+  s.style.width = s.style.height = (2 + (i%4)) + 'px';
+  s.style.opacity = (0.25 + (i%5)*0.1);
+  s.style.animationDelay = ((i%6)*0.6)+'s';
+  s.style.animationDuration = (5+(i%5))+'s';
+  fp.appendChild(s);
+}
+
+/* ---------- HERO PARTICLE CANVAS ---------- */
+(()=> {
+  const canvas = document.getElementById('particles');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let raf, w, h, dpr;
+  const particles = [];
+
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio || 1, 1.8);
+    w = canvas.clientWidth;
+    h = canvas.clientHeight;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  function init(){
+    particles.length = 0;
+    const count = Math.min(140, Math.floor((w*h)/12000));
+    for (let i=0;i<count;i++){
+      particles.push({
+        x: Math.random()*w, y: Math.random()*h,
+        r: 0.6 + Math.random()*2.2,
+        vx: (Math.random()-0.5)*0.25,
+        vy: -0.15 - Math.random()*0.35,
+        a: 0.25 + Math.random()*0.6,
+        hue: 18 + Math.random()*22,
+      });
+    }
+  }
+  let mouse = {x:-9999,y:-9999};
+  window.addEventListener('mousemove', (e)=>{
+    const r = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - r.left;
+    mouse.y = e.clientY - r.top;
+  }, {passive:true});
+
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    for (const p of particles){
+      const dx = p.x - mouse.x, dy = p.y - mouse.y;
+      const d2 = dx*dx + dy*dy;
+      if (d2 < 12000){
+        const f = (12000 - d2)/12000;
+        p.vx += (dx/Math.sqrt(d2+0.001))*f*0.06;
+        p.vy += (dy/Math.sqrt(d2+0.001))*f*0.06;
+      }
+      p.x += p.vx; p.y += p.vy;
+      p.vx *= 0.985; p.vy *= 0.99;
+      if (p.y < -10){ p.y = h+10; p.x = Math.random()*w; }
+      if (p.x < -10) p.x = w + 10;
+      if (p.x > w+10) p.x = -10;
+      const g = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*4);
+      g.addColorStop(0, `hsla(${p.hue},100%,70%,${p.a})`);
+      g.addColorStop(1, `hsla(${p.hue},100%,60%,0)`);
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r*4, 0, Math.PI*2);
+      ctx.fill();
+    }
+    raf = requestAnimationFrame(draw);
+  }
+  const ro = new ResizeObserver(()=>{ resize(); init(); });
+  ro.observe(canvas);
+  resize(); init(); draw();
+})();
+
+/* ---------- NAV SCROLLED ---------- */
+const nav = document.getElementById('nav');
+const onScroll = ()=> nav.classList.toggle('scrolled', window.scrollY > 20);
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+/* ---------- REVEAL ON SCROLL ---------- */
+const io = new IntersectionObserver((entries)=>{
+  for (const e of entries){
+    if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  }
+},{rootMargin:'-60px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------- YEAR ---------- */
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
