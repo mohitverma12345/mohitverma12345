@@ -33,7 +33,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-16 sm:h-20 flex items-center justify-between">
         <a href="#top" className="flex items-center gap-2.5" data-testid="logo-link">
           <Logo />
-          <span className="font-semibold text-[15px] tracking-tight">SunoDistro<span className="text-cyan-400">AI</span></span>
+          <span className="font-semibold text-[15px] tracking-tight">SunoDistro</span>
         </a>
 
         <nav className="hidden md:flex items-center gap-9">
