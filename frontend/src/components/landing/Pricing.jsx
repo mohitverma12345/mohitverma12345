@@ -6,47 +6,54 @@ import { SectionLabel } from "@/components/landing/MusicGenerator";
 
 const PLANS = [
   {
-    name: "Starter",
-    price: "$0",
-    sub: "Free forever",
-    desc: "For artists getting started.",
-    features: [
-      "5 AI generations / month",
-      "Basic mastering",
-      "1 release to Spotify",
-      "Standard analytics",
-    ],
-    cta: "Start Free",
-    highlight: false,
-  },
-  {
     name: "Artist",
-    price: "$9.99",
-    sub: "/ month",
-    desc: "Distribute and grow.",
+    price: "$20",
+    sub: "/ Year",
+    desc: "Perfect for independent musicians ready to release globally.",
     features: [
-      "Unlimited AI lyrics & artwork",
-      "100 AI tracks / month",
-      "Unlimited distribution",
-      "Free UPC & ISRC codes",
-      "Royalty analytics",
+      "Unlimited Release",
+      "100% royalties",
+      "Custom release date",
+      "Free UPC/ISRC",
+      "Official Artist Channel",
+      "Instagram profile linking",
+      "Exclusive access to new features",
     ],
     cta: "Select Artist Plan",
     highlight: false,
   },
   {
-    name: "Ultimate",
-    price: "$24.99",
-    sub: "/ month",
-    desc: "For professional creators.",
+    name: "Label",
+    price: "$50",
+    sub: "/ Year",
+    desc: "For record labels managing multiple artists and extensive catalogs.",
     features: [
-      "Unlimited AI music generations",
-      "Pro AI mastering studio",
-      "Stem extraction · unlimited",
+      "Unlimited Releases",
+      "Multiple Artists",
+      "100 Credits for AI Studio",
+      "100% royalties",
+      "Accepts AI Generated Music",
+      "Free UPC/ISRC",
       "Official Artist Channel",
-      "Priority distribution · 24h",
-      "Advanced royalty analytics",
-      "Instagram & TikTok linking",
+      "Instagram profile linking",
+      "Exclusive access to new features",
+    ],
+    cta: "Current Plan",
+    highlight: false,
+  },
+  {
+    name: "Ultimate",
+    price: "$55",
+    sub: "/ Year",
+    desc: "Premium distribution with maximum AI benefits for power users.",
+    features: [
+      "Everything Included in Label Plan",
+      "1000 Credits for AI Studio",
+      "AI Music Generator",
+      "AI Lyrics Generator",
+      "Mastering Studio",
+      "AI Artwork Generator",
+      "Stem Extractor",
     ],
     cta: "Select Ultimate Plan",
     highlight: true,
@@ -67,7 +74,7 @@ export default function Pricing() {
           </p>
         </div>
 
-        <div className="mt-16 grid lg:grid-cols-3 gap-6">
+        <div className="mt-16 grid lg:grid-cols-3 gap-6 items-stretch">
           {PLANS.map((p, i) => (
             <motion.div
               key={p.name}
@@ -105,7 +112,7 @@ export default function Pricing() {
               </ul>
 
               <a
-                href={p.name === "Starter" ? LINKS.register : LINKS.app}
+                href={LINKS.app}
                 className={`mt-8 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold transition-all ${
                   p.highlight
                     ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:opacity-90 shadow-[0_0_30px_rgba(59,130,246,0.35)]"
